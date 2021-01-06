@@ -13,41 +13,119 @@
 
                     <div class="bg-white col-12">
                                                     
-                            <h2 class="mb-5  text-dark text-center ">Titre du site</h2>
+                            <h2 class="mb-5  text-dark text-center ">Titre / Caroussel</h2>
                             
                         
                     </div>
 
                         <div class="row">
-                            <div class="col-4">
+                            <div class="col-5">
 
                                 <div class="box box-primary">
-                                    <div class="box-header ui-sortable-handle" style="cursor: move;">
+                                    <div class="box-header">
                                     <i class="ion ion-clipboard"></i>
-                        
-                                    <h4 class="box-title bg-warning m-0 p-3">Liste des titres</h4>
-                        
+                                    <div class="row bg-warning">
+                                        <h4 class="box-title  m-0 p-3" style="color: white">Liste des titres</h4>
+                                    </div>
                                     
                                     </div>
 
                                     <!-- /.box-header -->
                                     <div class="box-body">
                                     <ul class="todo-list ui-sortable">
+
+                                        <form action="/edit-titre" enctype="multipart/form-data" method="post">
+                                            @csrf
+
+                                            <li class="bg-dark border-bottom px-2 py-3">
+                                                <input type="text" name="grandTitre" style="width: 60vh" value="{{$titre->grandTitre}}" id="">
+                                            </li>
+
+                                            <li class="bg-dark border-bottom px-2 py-3">
+                                                <input type="text" name="titre1" style="width: 60vh" value="{{$titre->titre1}}" id="">
+                                            </li>
+
+                                            <li class="bg-dark border-bottom px-2 py-3">
+                                                <input type="text" name="titre2" style="width: 60vh" value="{{$titre->titre2}}" id="">
+                                            </li>
+
+                                            <li class="bg-dark border-bottom px-2 py-3">
+                                                <input type="text" name="titre3" style="width: 60vh" value="{{$titre->titre3}}" id="">
+                                            </li>
+
+                                            <li class="bg-dark border-bottom px-2 py-3">
+                                                <input type="text" name="titre4" style="width: 60vh" value="{{$titre->titre4}}" id="">
+                                            </li>
+
+                                            <li class="bg-dark  px-2 py-3">
+                                                <input type="text" name="titre5" style="width: 60vh" value="{{$titre->titre5}}" id="">
+                                            </li>
+
+                                            <li class="bg-dark px-2 py-2 text-right">
+                                                <button class="btn btn-success" type="submit">Modifier</button>
+                                            </li>
+
+                                            </form>
+                                    </ul>
                                         
-                                        <li>
-                                        <span class="text">Let theme shine like a star</span>
-                                        <div class="tools">
-                                            <i class="fa fa-edit"></i>
-                                            <i class="fa fa-trash-o"></i>
-                                        </div>
-                                        </li>
+                                    
+                                    </div>
+                                    <!-- /.box-body -->
+                                </div>
+                            </div>
+                            <div class="col-1"></div>
+                            <div class="col-6">
+
+                                <div class="box  box-primary">
+                                    <div class="box-header ui-sortable-handle">
+                                    <i class="ion ion-clipboard"></i>
+                        
+                                        <div class="row bg-danger">
+                                            <div class="col-8">
+                                                <h5 class="box-title  m-0 p-4" style="color: white">Liste des images du caroussel</h5>
+
+                                            </div>
+                                            <div class="col-4">
+                                                <form action="/add-carou" method="post" enctype="multipart/form-data">
+                                                    @csrf
+                                                    <div class=" row mt-3">
+                                                        <div class="col">
+                                                            <input name="image" type="file" class="custom-file-input" id="customFile">
+                                                            <label class="custom-file-label" for="customFile" style="width: 9vh"></label>
+
+                                                        </div>
+                                                        <div class="col">
+                                                            <button type="submit" class="btn btn-warning">Ajouter</button>
+
+                                                        </div>
+                                                      </div>
+                                                </form>
+
+                                            </div>
+                                        </div>                        
+                                    </div>
+
+                                    <!-- /.box-header -->
+                                    <div class="box-body">
+                                    <ul class="todo-list ui-sortable">
                                         
+                                        @foreach ($caroussel as $item)
+                                            <li>
+                                                <b style="padding: 0px 50px">{{$item->id}}</b>
+                                                <img style="width: 100px" src="{{asset("img/" . $item->image)}}" alt="">
+            
+                                                <div class="tools pt-3">
+                                                    <form action="/logo-delete/{{$item->id}}" method="post">
+                                                        @csrf
+                                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                                    </form>
+                                                </div>
+                                            </li>
+                                        @endforeach
                                         
                                         
                                     </ul>
-                                    <div class="box-footer clearfix no-border">
-                                        <button type="button" class="btn btn-default pull-right"><i class="fa fa-plus"></i> Add item</button>
-                                    </div>
+                                    
                                     </div>
                                     <!-- /.box-body -->
                                 </div>
@@ -55,70 +133,7 @@
                         </div>
 
 
-                            
-                            <div class="row m-5">
-
-                                <form action="/edit-titre" method="post" >
-
-                                    @csrf
-
-                                    <div class="form-group">
-                                        <input style="width: 90vh" name="grandTitre" value="{{$titre->grandTitre}}" type="text" class="mx-auto form-control" id="titre-1">
-                                        <button type="submit" class="mt-4 btn btn-success">Modifier</button>
-                                    </div>
-    
-                                </form>
-                                
-                            </div>
-
-                            <h2 class="mb-5 text-dark text-center ">Caroussel du site</h2>
-
-                            <p>Liste d'image dans le caroussel</p>
-
-                            <div class="row text-center mx-auto">
-
-                                @foreach ($caroussel as $item)
-
-                                <ul class="col" style="list-style: none;" >
-
-                                    <img style="width: 150px" src="{{asset("img/" . $item->image)}}" alt="">
-
-                                        <li>
-                                            <form action="/modif-logo/{{$item->id}}" enctype="multipart/form-data" method="post">
-                                                @csrf
-                                                <input type="file" name="lien" value="{{$item->lien}}">
-                                                <button class="btn btn-success" type="submit">Modifier</button>
-                                            </form>
-                                        </li>   
-
-                                        <li>
-                                            <form action="/delete-logo/{{$item->id}}" enctype="multipart/form-data" method="post">
-                                                @csrf
-                                                <button class="btn btn-danger" type="submit">Delete</button>
-                                            </form>
-                                        </li>
-                                    </ul>
-                                    
-                                @endforeach
-                                  
-                            </div>
-                            <div class=" text-center">
-
-                                    <p>Ajouter des images</p>
-
-                                    <form action="/add-logo" enctype="multipart/form-data" method="post">
-                                                        
-                                        <div class="custom-file">
-                                            <input type="file" class="custom-file-input" id="validatedCustomFile" required>
-                                            <label style="width: 78px;" class="custom-file-label text-left" for="validatedCustomFile"></label>
-                                            <div class="invalid-feedback">Example invalid custom file feedback</div>
-                                          </div>
-                                    </form>
-                                </div>
-
-                                
-
-                            </div>
+                        
                          
                     </div>
 

@@ -56,13 +56,21 @@
                 
             </div>
             <h2 class="mt-5 mb-3 text-light text-center ">Logo du site</h2>
-            <div class="card-body">
+            <div class="card-body bg-white rounded">
                 <form action="/modif-logo" enctype="multipart/form-data" method="post">
                     @csrf
-                    <img src="{{asset("img/logoGrand.jpg")}}" alt="">
+                    <div class="row text-center">
+                        <div class="col-6">
+                            <img src="{{asset("img/logoGrand.jpg")}}" alt="">
+
+                        </div>
+                        <div class="col-6">
+
+                            <input class="btn" type="file" name="lien" value="{{$logo->lien}}">
+                            <button class="btn btn-success" type="submit">Modifier</button>
+                        </div>
+                    </div>
     
-                    <input type="file" name="lien" value="{{$logo->lien}}">
-                    <button type="submit">Modifier</button>
                 </form>
                 
             </div>

@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
         $this->call(BackgroundSeeder::class);
         $this->call(TitreSeeder::class);
         $this->call(LogoSeeder::class);
+        $this->call(VideoSeeder::class);
 
     }
 }

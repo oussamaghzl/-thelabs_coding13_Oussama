@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Background;
 use App\Models\Titre;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\ImageManagerStatic;
 
 class BackgroundController extends Controller
 {
@@ -17,6 +19,7 @@ class BackgroundController extends Controller
     {
         $caroussel = Background::all();
         $titre = Titre::all()[0];
+
         return view('backend.titre',compact('titre','caroussel'));
     }
 
@@ -38,7 +41,15 @@ class BackgroundController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $addCaroussel = new Background;
+
+        $addCaroussel->image = $request->file('image')->hashName();
+
+        $addCaroussel ->save();
+        
+        $request->file('image')->storePublicly('img','public');
+
+        return redirect()->back();
     }
 
     /**
@@ -75,7 +86,12 @@ class BackgroundController extends Controller
         $modifEdif = Titre::all()[0];
 
         $modifEdif->grandTitre = $request->grandTitre;
-        
+        $modifEdif->titre1 = $request->titre1;
+        $modifEdif->titre2 = $request->titre2;
+        $modifEdif->titre3 = $request->titre3;
+        $modifEdif->titre4 = $request->titre4;
+        $modifEdif->titre5 = $request->titre5;
+
         $modifEdif->save();
 
         return redirect()->back();
@@ -97,8 +113,14 @@ class BackgroundController extends Controller
      * @param  \App\Models\Background  $background
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Background $background)
+    public function destroy($id)
     {
-        //
+        $modifCaroussel= Background::find($id);
+
+        $modifCaroussel->delete();
+        
+        Storage::disk('public')->delete('img/' . $modifCaroussel->image);
+
+        return redirect()->back();
     }
 }

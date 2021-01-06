@@ -260,14 +260,14 @@ return [
                             'url'  => '/navbar',
                         ],
                         [
-                            'text'    => 'Titre du site',
+                            'text'    => 'Titre / Caroussel',
                             'icon_color' => 'blue',
                             'url'     => '/titre',
                         ],
                         [
-                            'text'    => 'Description du site/video',
+                            'text'    => 'Video',
                             'icon_color' => 'blue',
-                            'url'     => '#',
+                            'url'     => '/video',
                         ],
                         [
                             'text'    => 'Testimonials',

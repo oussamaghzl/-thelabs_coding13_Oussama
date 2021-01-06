@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTitresTable extends Migration
+class CreateVideosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,17 @@ class CreateTitresTable extends Migration
      */
     public function up()
     {
-        Schema::create('titres', function (Blueprint $table) {
+        Schema::create('videos', function (Blueprint $table) {
             $table->id();
-            $table->string('grandTitre');
-            $table->string('titre1');
-            $table->string('titre2');
-            $table->string('titre3');
-            $table->string('titre4');
-            $table->string('titre5');
+            $table->string('colGauche',500);
+            $table->string('colDroite',500);
+            $table->string('bouton');
+            $table->string('image');
+            $table->string('video',2000);
             $table->timestamps();
         });
     }
+
     /**
      * Reverse the migrations.
      *
@@ -31,6 +31,6 @@ class CreateTitresTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('titres');
+        Schema::dropIfExists('videos');
     }
 }
