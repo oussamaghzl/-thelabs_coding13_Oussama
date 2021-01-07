@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Video;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class VideoController extends Controller
 {
@@ -71,7 +72,30 @@ class VideoController extends Controller
      */
     public function update(Request $request, Video $video)
     {
-        //
+        // $validateForm = $request->validate([
+        //     "image" => "required",
+        //     "colGauche" => "required",
+        //     "colDroite" => "required",
+        //     "bouton" => "required",
+        //     "video" => "required",
+
+        // ]);
+
+        $modifVideo = Video::all()[0];
+
+        $modifVideo->image = $request->file('image')->hashName();
+        $modifVideo->colGauche = $request->colGauche;
+        $modifVideo->colDroite = $request->colDroite;
+        $modifVideo->bouton = $request->bouton;
+        $modifVideo->video = $request->video;
+
+        $modifVideo ->save();
+        
+        Storage::disk('public')->delete('img/' . $modifVideo->image);
+
+        $request->file('image')->storePublicly('img','public');
+
+        return redirect()->back();
     }
 
     /**

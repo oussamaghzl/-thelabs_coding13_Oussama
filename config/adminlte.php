@@ -272,12 +272,12 @@ return [
                         [
                             'text'    => 'Testimonials',
                             'icon_color' => 'blue',
-                            'url'     => '#',
+                            'url'     => '/testimonial',
                         ],
                         [
                             'text'    => 'Nos Service (îcone)',
                             'icon_color' => 'blue',
-                            'url'     => '#',
+                            'url'     => '/service',
                         ],
                     ],
                 ],

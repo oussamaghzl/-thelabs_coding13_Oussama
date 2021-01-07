@@ -6,6 +6,8 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LogoController;
 use App\Http\Controllers\NavbarController;
 use App\Http\Controllers\PublicController;
+use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\TestimonialsController;
 use App\Http\Controllers\VideoController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -34,11 +36,17 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/navbar', [LogoController::class, 'index'])->name('navbar');
 Route::get('/titre', [BackgroundController::class, 'index'])->name('titre');
 Route::get('/video', [VideoController::class, 'index'])->name('video');
+Route::get('/testimonial', [TestimonialsController::class, 'index']);
+Route::get('/service', [ServiceController::class, 'index']);
 
 //function
 
 Route::post('/modif-navbar', [NavbarController::class, 'update']);
 Route::post('/modif-logo', [LogoController::class, 'update']);
+Route::post('/edit-video', [VideoController::class, 'update']);
+
+Route::post('/edit-service/{id}', [ServiceController::class, 'update']);
+Route::post('/delete-service/{id}', [ServiceController::class, 'destroy']);
 
 Route::post('/add-carou', [BackgroundController::class, 'store']);
 Route::post('/edit-titre', [BackgroundController::class, 'update']);

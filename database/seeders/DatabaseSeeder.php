@@ -22,6 +22,9 @@ class DatabaseSeeder extends Seeder
         $this->call(TitreSeeder::class);
         $this->call(LogoSeeder::class);
         $this->call(VideoSeeder::class);
+        $this->call(IconeSeeder::class);
+        $this->call(ServiceSeeder::class);
+        $this->call(TeamSeeder::class);
 
     }
 }
