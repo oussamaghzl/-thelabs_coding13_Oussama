@@ -23,8 +23,11 @@ class DatabaseSeeder extends Seeder
         $this->call(LogoSeeder::class);
         $this->call(VideoSeeder::class);
         $this->call(IconeSeeder::class);
-        $this->call(ServiceSeeder::class);
         $this->call(TeamSeeder::class);
+        $this->call(ServiceSeeder::class);
+        $this->call(TestimonialsSeeder::class);
+        $this->call(ContactSeeder::class);
+        $this->call(ReadySeeder::class);
 
     }
 }

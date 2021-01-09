@@ -17,22 +17,22 @@ class TeamSeeder extends Seeder
         DB::table('teams')->insert([
             [
                 'name' => 'Ghezal Oussama',
-                'photo' => '/avatar/01.jpg',
+                'photo' => '/team/3.jpg',
                 'fonction' => 'CEO Company',
             ],
             [
                 "name" => 'Zimdine Zidane',
-                'photo' => '/avatar/02.jpg',
+                'photo' => '/team/2.jpg',
                 'fonction' => 'PROJECT MANAGER',
             ],
             [
                 'name' => 'Taouil Abdelmajid',
-                'photo' => '/avatar/03.jpg',
+                'photo' => '/team/1.jpg',
                 'fonction' => 'JUNIOR DEVELOPER',
             ],
             [
                 'name' => 'Dari Kawtar',
-                'photo' => '/avatar/02.jpg',
+                'photo' => '/team/2.jpg',
                 'fonction' => 'DIGITAL DESIGNER',
             ],
         ]);

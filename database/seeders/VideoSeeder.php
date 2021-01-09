@@ -16,6 +16,7 @@ class VideoSeeder extends Seeder
      */
     public function run()
     {
+
         DB::table('videos')->insert([
             [
                 'colGauche' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur leo est, feugiat nec elementum id, suscipit id nulla. Nulla sit amet luctus dolor. Etiam finibus consequat ante ac congue. Quisque porttitor porttitor tempus. Donec maximus ipsum non ornare vporttitor porttitorestibulum. Sed libero nibh, feugiat at enim id, bibendum sollicitudin arcu.',
@@ -24,7 +25,7 @@ class VideoSeeder extends Seeder
                 'image' => 'video.jpg',
                 'video' => 'https://youtu.be/JgHfx2v9zOU',
             ],
-
         ]);
+    
     }
 }

@@ -18,7 +18,7 @@ class BackgroundController extends Controller
     public function index()
     {
         $caroussel = Background::all();
-        $titre = Titre::all()[0];
+        $titre = Titre::all();
 
         return view('backend.titre',compact('titre','caroussel'));
     }
@@ -81,17 +81,12 @@ class BackgroundController extends Controller
      * @param  \App\Models\Background  $background
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Request $request, $id)
     {
-        $modifEdif = Titre::all()[0];
+        $modifEdif = Titre::find($id);
 
-        $modifEdif->grandTitre = $request->grandTitre;
-        $modifEdif->titre1 = $request->titre1;
-        $modifEdif->titre2 = $request->titre2;
-        $modifEdif->titre3 = $request->titre3;
-        $modifEdif->titre4 = $request->titre4;
-        $modifEdif->titre5 = $request->titre5;
-
+        $modifEdif->titre = $request->titre;
+        
         $modifEdif->save();
 
         return redirect()->back();

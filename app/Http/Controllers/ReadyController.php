@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Metier;
+use App\Models\Ready;
 use Illuminate\Http\Request;
 
-class MetierController extends Controller
+class ReadyController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,9 @@ class MetierController extends Controller
      */
     public function index()
     {
-        //
+        $ready = Ready::all()[0];
+
+        return view('backend.ready',compact('ready'));
     }
 
     /**
@@ -41,10 +43,10 @@ class MetierController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Metier  $metier
+     * @param  \App\Models\Ready  $ready
      * @return \Illuminate\Http\Response
      */
-    public function show(Metier $metier)
+    public function show(Ready $ready)
     {
         //
     }
@@ -52,10 +54,10 @@ class MetierController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Metier  $metier
+     * @param  \App\Models\Ready  $ready
      * @return \Illuminate\Http\Response
      */
-    public function edit(Metier $metier)
+    public function edit(Ready $ready)
     {
         //
     }
@@ -64,21 +66,30 @@ class MetierController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Metier  $metier
+     * @param  \App\Models\Ready  $ready
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Metier $metier)
+    public function update(Request $request)
     {
-        //
+
+        $modifReady = Ready::all()[0];
+
+        $modifReady->soustitre = $request->soustitre;
+        $modifReady->bouton = $request->bouton;
+
+        $modifReady->save();
+
+        return redirect()->back();
+
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Metier  $metier
+     * @param  \App\Models\Ready  $ready
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Metier $metier)
+    public function destroy(Ready $ready)
     {
         //
     }

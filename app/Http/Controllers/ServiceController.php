@@ -39,7 +39,15 @@ class ServiceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $addService = new Service();
+
+        $addService->icone_id = $request->icone_id;
+        $addService->titre = $request->titre;
+        $addService->text = $request->text;
+
+        $addService->save();
+
+        return redirect()->back();
     }
 
     /**
@@ -59,9 +67,11 @@ class ServiceController extends Controller
      * @param  \App\Models\Service  $service
      * @return \Illuminate\Http\Response
      */
-    public function edit(Service $service)
-    {
-        //
+    public function edit($id)     
+    {         
+        $service=Service::find($id);         
+        $icons= Icone::all();
+        return view('backend.edit.service',compact('service','icons'));     
     }
 
     /**
@@ -73,6 +83,7 @@ class ServiceController extends Controller
      */
     public function update(Request $request, $id)
     {
+
         $modifService = Service::find($id);
 
         $modifService->icone_id = $request->icone_id;
@@ -82,6 +93,7 @@ class ServiceController extends Controller
         $modifService->save();
 
         return redirect()->back();
+
     }
 
     /**

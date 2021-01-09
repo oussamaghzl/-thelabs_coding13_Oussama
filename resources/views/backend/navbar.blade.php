@@ -21,7 +21,7 @@
                                     @csrf  
                                     <div class="row d-flex">
                                         <div class="col-6">
-                                            <img src="{{asset("img/logoPetit.jpg")}}" alt="">
+                                            <img src="{{asset("img/logoPetit.png")}}" alt="">
                                         </div>
                                         <div class="col-6">
                                             <ul class="menu-list d-flex ">
@@ -61,7 +61,7 @@
                     @csrf
                     <div class="row text-center">
                         <div class="col-6">
-                            <img src="{{asset("img/logoGrand.jpg")}}" alt="">
+                            <img src="{{asset("img/logoGrand.png")}}" alt="">
 
                         </div>
                         <div class="col-6">

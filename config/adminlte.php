@@ -249,9 +249,8 @@ return [
             'text'    => 'Catégorie',
             'icon_color' => 'yellow',
             'submenu' => [
-                
                 [
-                    'text'    => 'Accueil',
+                    'text'    => 'All Page',
                     'icon_color' => 'green',
                     'submenu' => [
                         [
@@ -259,6 +258,17 @@ return [
                             'icon_color' => 'blue',
                             'url'  => '/navbar',
                         ],
+                        [
+                            'text'    => 'Footer',
+                            'icon_color' => 'blue',
+                            'url'     => '/footer',
+                        ],
+                    ],
+                ],
+                [
+                    'text'    => 'Accueil',
+                    'icon_color' => 'green',
+                    'submenu' => [
                         [
                             'text'    => 'Titre / Caroussel',
                             'icon_color' => 'blue',
@@ -275,10 +285,16 @@ return [
                             'url'     => '/testimonial',
                         ],
                         [
-                            'text'    => 'Nos Service (îcone)',
+                            'text'    => 'Ready',
+                            'icon_color' => 'blue',
+                            'url'     => '/ready',
+                        ],
+                        [
+                            'text'    => 'Nos Service',
                             'icon_color' => 'blue',
                             'url'     => '/service',
                         ],
+                        
                     ],
                 ],
                 [
@@ -318,17 +334,13 @@ return [
                     'icon_color' => 'green',
                     'submenu' => [
                         [
-                            'text' => 'level_two',
+                            'text'    => 'Edit',
                             'icon_color' => 'blue',
-                            'url'  => '#',
-                        ],
-                        [
-                            'text'    => 'level_two',
-                            'icon_color' => 'blue',
-                            'url'     => '#',
+                            'url'     => '/contact',
                         ],
                     ],
                 ],
+                
             ],
         ],
     ],

@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Team;
+use App\Models\Contact;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 
-class TeamController extends Controller
+class ContactController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +14,9 @@ class TeamController extends Controller
      */
     public function index()
     {
-        //
+        $contact = Contact::all()[0];
+
+        return view('backend.contact',compact('contact'));
     }
 
     /**
@@ -36,35 +37,16 @@ class TeamController extends Controller
      */
     public function store(Request $request)
     {
-        $validateForm = $request->validate([
-            "name" => "required",
-            "photo" => "required",
-            "fonction" => "required",
-
-        ]);
-
-        $addTeam = new Team();
-
-        $addTeam->name = $request->name;
-        $addTeam->photo = $request->file('photo')->hashName();
-        $addTeam->fonction = $request->fonction;
-
-        $addTeam ->save();
-        
-        Storage::disk('public')->delete('img/' . $addTeam->photo);
-        
-        $request->file('photo')->storePublicly('img','public');
-
-        return redirect()->back();
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Team  $team
+     * @param  \App\Models\Contact  $contact
      * @return \Illuminate\Http\Response
      */
-    public function show(Team $team)
+    public function show(Contact $contact)
     {
         //
     }
@@ -72,10 +54,10 @@ class TeamController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Team  $team
+     * @param  \App\Models\Contact  $contact
      * @return \Illuminate\Http\Response
      */
-    public function edit(Team $team)
+    public function edit($id)
     {
         //
     }
@@ -84,21 +66,33 @@ class TeamController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Team  $team
+     * @param  \App\Models\Contact  $contact
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Team $team)
+    public function update(Request $request)
     {
-        //
+
+        $modifContact = Contact::all()[0];
+
+        $modifContact->titre = $request->titre;
+        $modifContact->rue = $request->rue;
+        $modifContact->codepostal = $request->codepostal;
+        $modifContact->telephone = $request->telephone;
+        $modifContact->email = $request->email;
+
+        $modifContact->save();
+
+        return redirect()->back();
+
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Team  $team
+     * @param  \App\Models\Contact  $contact
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Team $team)
+    public function destroy($id)
     {
         //
     }

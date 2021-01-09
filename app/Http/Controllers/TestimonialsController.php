@@ -38,7 +38,20 @@ class TestimonialsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validateForm = $request->validate([
+            "texte" => "required",
+            "team_id" => "required",
+
+        ]);
+
+        $addTesti = new Testimonials();
+
+        $addTesti->texte = $request->texte;
+        $addTesti->team_id = $request->team_id;
+
+        $addTesti ->save();
+        
+        return redirect()->back();
     }
 
     /**
@@ -70,9 +83,22 @@ class TestimonialsController extends Controller
      * @param  \App\Models\Testimonials  $testimonials
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Testimonials $testimonials)
+    public function update(Request $request, $id)
     {
-        //
+        $validateForm = $request->validate([
+            "texte" => "required",
+            "team_id" => "required",
+
+        ]);
+
+        $modifTesti = Testimonials::find($id);
+
+        $modifTesti->texte = $request->texte;
+        $modifTesti->team_id = $request->team_id;
+
+        $modifTesti ->save();
+        
+        return redirect()->back();
     }
 
     /**
@@ -81,8 +107,12 @@ class TestimonialsController extends Controller
      * @param  \App\Models\Testimonials  $testimonials
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Testimonials $testimonials)
+    public function destroy($id)
     {
-        //
+        $delTesti = Testimonials::find($id);
+
+        $delTesti->delete();
+
+        return redirect()->back();
     }
 }

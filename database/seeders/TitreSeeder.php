@@ -14,15 +14,30 @@ class TitreSeeder extends Seeder
      */
     public function run()
     {
+
         DB::table('titres')->insert([
             [
-                'grandTitre' => 'Get your freebie template now!',
-                'titre1' => 'GET IN (THE LAB) AND DISCOVER THE WORLD',
-                'titre2' => 'WHAT OUR CLIENTS SAY',
-                'titre3' => 'GET IN (THE LAB) AND SEE THE SERVICES',
-                'titre4' => 'GET IN (THE LAB) AND MEET THE TEAM',
-                "titre5" => 'Are you ready to stand out?',
+                'titre' => 'Get your freebie template now!',
+            ],
+            [
+                'titre' => 'GET IN (THE LAB) AND DISCOVER THE WORLD',
+            ],
+            [
+                'titre' => 'WHAT OUR CLIENTS SAY',
+            ],
+            [
+                'titre' => 'GET IN (THE LAB) AND SEE THE SERVICES',
+            ],
+            [
+                'titre' => 'GET IN (THE LAB) AND MEET THE TEAM',
+            ],
+            [
+                "titre" => 'Are you ready to stand out?',
+            ],
+            [
+                'titre' => 'Contact',
             ],
         ]);
+        
     }
 }

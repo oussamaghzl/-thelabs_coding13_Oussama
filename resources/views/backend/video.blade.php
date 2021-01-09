@@ -72,8 +72,7 @@
 
                                             <div class="col-6">
                                                 <h5>Colonne de gauche</h5>
-                                                <textarea name="colGauche" value='{{$video->colGauche}}' id="texte" cols="50" rows="5">{{$video->colGauche}}
-                                                </textarea>
+                                                <textarea name="colGauche" value='{{$video->colGauche}}' id="texte" cols="50" rows="5">{{$video->colGauche}}</textarea>
                                             </div>
 
                                             <div class="col-6">

@@ -33,39 +33,24 @@
                                     <!-- /.box-header -->
                                     <div class="box-body">
                                     <ul class="todo-list ui-sortable">
-
-                                        <form action="/edit-titre" enctype="multipart/form-data" method="post">
+                                        
+                                        @foreach ($titre as $item)
+                                        <form action="/edit-titre/{{$item->id}}" method="post">
                                             @csrf
 
-                                            <li class="bg-dark border-bottom px-2 py-3">
-                                                <input type="text" name="grandTitre" style="width: 60vh" value="{{$titre->grandTitre}}" id="">
-                                            </li>
-
-                                            <li class="bg-dark border-bottom px-2 py-3">
-                                                <input type="text" name="titre1" style="width: 60vh" value="{{$titre->titre1}}" id="">
-                                            </li>
-
-                                            <li class="bg-dark border-bottom px-2 py-3">
-                                                <input type="text" name="titre2" style="width: 60vh" value="{{$titre->titre2}}" id="">
-                                            </li>
-
-                                            <li class="bg-dark border-bottom px-2 py-3">
-                                                <input type="text" name="titre3" style="width: 60vh" value="{{$titre->titre3}}" id="">
-                                            </li>
-
-                                            <li class="bg-dark border-bottom px-2 py-3">
-                                                <input type="text" name="titre4" style="width: 60vh" value="{{$titre->titre4}}" id="">
-                                            </li>
-
-                                            <li class="bg-dark  px-2 py-3">
-                                                <input type="text" name="titre5" style="width: 60vh" value="{{$titre->titre5}}" id="">
-                                            </li>
-
-                                            <li class="bg-dark px-2 py-2 text-right">
-                                                <button class="btn btn-success" type="submit">Modifier</button>
-                                            </li>
-
+                                                
+                                                <li class="bg-dark pl-3 border-bottom px-2 row py-3">
+                                                    <input type="text" name="titre" style="width: 60%" value="{{$item->titre}}" id="">
+                                                    <button class="btn btn-success ml-5" type="submit">Modifier</button>
+                                                </li>
+                                              
+                                                
                                             </form>
+
+                                            @endforeach
+                                            
+
+
                                     </ul>
                                         
                                     
@@ -91,7 +76,7 @@
                                                     <div class=" row mt-3">
                                                         <div class="col">
                                                             <input name="image" type="file" class="custom-file-input" id="customFile">
-                                                            <label class="custom-file-label" for="customFile" style="width: 9vh"></label>
+                                                            <label class="custom-file-label" for="customFile" ></label>
 
                                                         </div>
                                                         <div class="col">

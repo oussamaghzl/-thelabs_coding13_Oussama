@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class TestimonialsSeeder extends Seeder
 {
@@ -13,27 +14,20 @@ class TestimonialsSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('teams')->insert([
+        DB::table('testimonials')->insert([
             [
-                'name' => 'Ghezal Oussama',
-                'photo' => '/avatar/01.jpg',
-                'fonction' => 'CEO Company',
+                'texte' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur leo est, feugiat nec elementum id, suscipit id nulla. Nulla sit amet luctus dolor. Etiam finibus consequa.',
+                'team_id' => '2',
             ],
             [
-                "name" => 'Zimdine Zidane',
-                'photo' => '/avatar/02.jpg',
-                'fonction' => 'PROJECT MANAGER',
+                'texte' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur leo est, feugiat nec elementum id, suscipit id nulla. Nulla sit amet luctus dolor. Etiam finibus consequa.',
+                'team_id' => '1',
             ],
             [
-                'name' => 'Taouil Abdelmajid',
-                'photo' => '/avatar/03.jpg',
-                'fonction' => 'JUNIOR DEVELOPER',
+                'texte' => 'Lorem ipsum dolor sit amet, Oussama le bg consectetur adipiscing elit. Curabitur leo est, feugiat nec elementum id, suscipit id nulla. Nulla sit amet luctus dolor. Etiam finibus consequa.',
+                'team_id' => '3',
             ],
-            [
-                'name' => 'Dari Kawtar',
-                'photo' => '/avatar/02.jpg',
-                'fonction' => 'DIGITAL DESIGNER',
-            ],
+            
         ]);
     }
 }
