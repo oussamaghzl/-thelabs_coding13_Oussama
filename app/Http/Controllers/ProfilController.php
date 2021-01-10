@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Footer;
+use App\Models\Profil;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
-class FooterController extends Controller
+class ProfilController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +15,9 @@ class FooterController extends Controller
      */
     public function index()
     {
-        $footer = Footer::all()[0];
-        return view('backend.footer',compact('footer'));
+        $profil = Auth::user();
+
+        return view('backend.profil',compact('profil'));
     }
 
     /**
@@ -42,10 +44,10 @@ class FooterController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Footer  $footer
+     * @param  \App\Models\Profil  $profil
      * @return \Illuminate\Http\Response
      */
-    public function show(Footer $footer)
+    public function show(Profil $profil)
     {
         //
     }
@@ -53,10 +55,10 @@ class FooterController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Footer  $footer
+     * @param  \App\Models\Profil  $profil
      * @return \Illuminate\Http\Response
      */
-    public function edit(Footer $footer)
+    public function edit(Profil $profil)
     {
         //
     }
@@ -65,31 +67,21 @@ class FooterController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Footer  $footer
+     * @param  \App\Models\Profil  $profil
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Request $request, Profil $profil)
     {
-
-        $modifFooter = Footer::all()[0];
-
-        $modifFooter->copyright = $request->copyright;
-        $modifFooter->name = $request->name;
-        $modifFooter->lien = $request->lien;
-
-        $modifFooter->save();
-
-        return redirect()->back();
-
+        //
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Footer  $footer
+     * @param  \App\Models\Profil  $profil
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Footer $footer)
+    public function destroy(Profil $profil)
     {
         //
     }

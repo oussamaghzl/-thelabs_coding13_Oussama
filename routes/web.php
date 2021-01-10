@@ -1,15 +1,20 @@
 <?php
 
 use App\Http\Controllers\AccueilController;
+use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\BackgroundController;
+use App\Http\Controllers\BlogController;
+use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\FooterController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LogoController;
 use App\Http\Controllers\NavbarController;
+use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\PublicController;
 use App\Http\Controllers\ReadyController;
 use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\TagController;
 use App\Http\Controllers\TeamController;
 use App\Http\Controllers\TestimonialsController;
 use App\Http\Controllers\VideoController;
@@ -36,9 +41,10 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 
 //Accueil
+Route::get('/profil', [ProfilController::class, 'index'])->name('profil');
 
 Route::get('/navbar', [LogoController::class, 'index'])->name('navbar');
-Route::get('/navbar', [FooterController::class, 'index'])->name('footer');
+Route::get('/footer', [FooterController::class, 'index'])->name('footer');
 Route::get('/titre', [BackgroundController::class, 'index'])->name('titre');
 Route::get('/video', [VideoController::class, 'index'])->name('video');
 Route::get('/testimonial', [TestimonialsController::class, 'index']);
@@ -47,6 +53,7 @@ Route::get('/contact', [ContactController::class, 'index']);
 Route::get('/ready', [ReadyController::class, 'index']);
 
 Route::get('/edit-ser/{id}', [ServiceController::class, 'edit']);
+
 
 //function
 
@@ -72,6 +79,14 @@ Route::post('/edit-contact', [ContactController::class, 'update']);
 
 Route::post('/edit-ready', [ReadyController::class, 'update']);
 
+Route::post('/edit-footer', [FooterController::class, 'update']);
+
+
+//MAil
+// Route::post('/forms/contact.php', [FooterController::class, 'update']);
+// Route::get('/edit-footer', [FooterController::class, 'update']);
+// Route::post('/edit-footer', [FooterController::class, 'update']);
+
 
 
 // Publique
@@ -84,6 +99,17 @@ Route::get('/Contact', [PublicController::class, 'index4'])->name('Contact');
 
 
 
+
+
 // Administrateur
 
+Route::get('/article', [BlogController::class, 'index1'])->name('article');
+Route::get('/categorie', [BlogController::class, 'index3'])->name('categorie');
+Route::get('/tag', [BlogController::class, 'index2'])->name('tag');
+
+
+
+Route::post('/add-article', [ArticleController::class, 'store']);
+Route::post('/add-tag', [TagController::class, 'store']);
+Route::post('/add-categorie', [CategorieController::class, 'store']);
 

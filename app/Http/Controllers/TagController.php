@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Footer;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 
-class FooterController extends Controller
+class TagController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,7 @@ class FooterController extends Controller
      */
     public function index()
     {
-        $footer = Footer::all()[0];
-        return view('backend.footer',compact('footer'));
+        //
     }
 
     /**
@@ -36,16 +35,24 @@ class FooterController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+        $newTag = new Tag();
+
+        $newTag->name = $request->name;
+ 
+        $newTag->save();
+
+        return redirect()->back();
+
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Footer  $footer
+     * @param  \App\Models\Tag  $tag
      * @return \Illuminate\Http\Response
      */
-    public function show(Footer $footer)
+    public function show(Tag $tag)
     {
         //
     }
@@ -53,10 +60,10 @@ class FooterController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Footer  $footer
+     * @param  \App\Models\Tag  $tag
      * @return \Illuminate\Http\Response
      */
-    public function edit(Footer $footer)
+    public function edit(Tag $tag)
     {
         //
     }
@@ -65,31 +72,21 @@ class FooterController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Footer  $footer
+     * @param  \App\Models\Tag  $tag
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Request $request, Tag $tag)
     {
-
-        $modifFooter = Footer::all()[0];
-
-        $modifFooter->copyright = $request->copyright;
-        $modifFooter->name = $request->name;
-        $modifFooter->lien = $request->lien;
-
-        $modifFooter->save();
-
-        return redirect()->back();
-
+        //
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Footer  $footer
+     * @param  \App\Models\Tag  $tag
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Footer $footer)
+    public function destroy(Tag $tag)
     {
         //
     }

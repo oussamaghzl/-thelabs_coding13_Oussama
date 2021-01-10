@@ -2,20 +2,33 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Footer;
+use App\Models\Blog;
+use App\Models\Categorie;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 
-class FooterController extends Controller
+class BlogController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index1()
     {
-        $footer = Footer::all()[0];
-        return view('backend.footer',compact('footer'));
+        $tag = Tag::all();
+        $categorie = Categorie::all();
+        return view ('backend.blog.article',compact('tag','categorie'));
+    }
+    public function index2()
+    {
+        return view ('backend.blog.tag');
+
+    }
+    public function index3()
+    {
+        return view ('backend.blog.categorie');
+
     }
 
     /**
@@ -42,10 +55,10 @@ class FooterController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Footer  $footer
+     * @param  \App\Models\Blog  $blog
      * @return \Illuminate\Http\Response
      */
-    public function show(Footer $footer)
+    public function show(Blog $blog)
     {
         //
     }
@@ -53,10 +66,10 @@ class FooterController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Footer  $footer
+     * @param  \App\Models\Blog  $blog
      * @return \Illuminate\Http\Response
      */
-    public function edit(Footer $footer)
+    public function edit(Blog $blog)
     {
         //
     }
@@ -65,31 +78,21 @@ class FooterController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Footer  $footer
+     * @param  \App\Models\Blog  $blog
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Request $request, Blog $blog)
     {
-
-        $modifFooter = Footer::all()[0];
-
-        $modifFooter->copyright = $request->copyright;
-        $modifFooter->name = $request->name;
-        $modifFooter->lien = $request->lien;
-
-        $modifFooter->save();
-
-        return redirect()->back();
-
+        //
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Footer  $footer
+     * @param  \App\Models\Blog  $blog
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Footer $footer)
+    public function destroy(Blog $blog)
     {
         //
     }

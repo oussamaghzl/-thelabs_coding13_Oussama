@@ -1,27 +1,30 @@
 <?php
 
 use Illuminate\Database\Migrations\Migration;
+
 use Illuminate\Database\Schema\Blueprint;
+
 use Illuminate\Support\Facades\Schema;
 
-class CreateFootersTable extends Migration
+class CreateArticleCategorieTable extends Migration
 {
+
     /**
      * Run the migrations.
      *
      * @return void
      */
+
     public function up()
     {
-        Schema::create('footers', function (Blueprint $table) {
+
+        Schema::create('article_categorie', function (Blueprint $table) {
             $table->id();
-
-            $table->string('copyright');
-            $table->string('name');
-            $table->string('lien');
-
+            $table->unsignedBigInteger('article_id');
+            $table->unsignedBigInteger('categorie_id');
             $table->timestamps();
         });
+        
     }
 
     /**
@@ -29,8 +32,9 @@ class CreateFootersTable extends Migration
      *
      * @return void
      */
+
     public function down()
     {
-        Schema::dropIfExists('footers');
+        Schema::dropIfExists('article_categorie');
     }
 }

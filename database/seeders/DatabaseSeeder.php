@@ -28,6 +28,9 @@ class DatabaseSeeder extends Seeder
         $this->call(TestimonialsSeeder::class);
         $this->call(ContactSeeder::class);
         $this->call(ReadySeeder::class);
+        $this->call(FooterSeeder::class);
+        $this->call(TagSeeder::class);
+        $this->call(CategorieSeeder::class);
 
     }
 }

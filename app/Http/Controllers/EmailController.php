@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Footer;
+use App\Mail\MailSender;
+use App\Models\Email;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
-class FooterController extends Controller
+class EmailController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +16,7 @@ class FooterController extends Controller
      */
     public function index()
     {
-        $footer = Footer::all()[0];
-        return view('backend.footer',compact('footer'));
+        //
     }
 
     /**
@@ -36,16 +37,29 @@ class FooterController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $newMail = new Email();
+
+        $newMail->name = $request->name;
+        $newMail->email = $request->email;
+        $newMail->subject = $request->subject;
+        $newMail->message = $request->message;
+
+        Mail::to($newMail->email)->send(new MailSender($request));
+
+        $newMail->save();
+
+        return redirect()->back();
+        
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Footer  $footer
+     * @param  \App\Models\Email  $email
      * @return \Illuminate\Http\Response
      */
-    public function show(Footer $footer)
+    public function show(Email $email)
     {
         //
     }
@@ -53,10 +67,10 @@ class FooterController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Footer  $footer
+     * @param  \App\Models\Email  $email
      * @return \Illuminate\Http\Response
      */
-    public function edit(Footer $footer)
+    public function edit(Email $email)
     {
         //
     }
@@ -65,31 +79,21 @@ class FooterController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Footer  $footer
+     * @param  \App\Models\Email  $email
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Request $request, Email $email)
     {
-
-        $modifFooter = Footer::all()[0];
-
-        $modifFooter->copyright = $request->copyright;
-        $modifFooter->name = $request->name;
-        $modifFooter->lien = $request->lien;
-
-        $modifFooter->save();
-
-        return redirect()->back();
-
+        //
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Footer  $footer
+     * @param  \App\Models\Email  $email
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Footer $footer)
+    public function destroy(Email $email)
     {
         //
     }

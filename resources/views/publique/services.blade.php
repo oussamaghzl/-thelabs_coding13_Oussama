@@ -66,7 +66,7 @@
 									<p>{{$item->text}}</p>
 								</div>
 								<div class="icon">
-									<i class="flaticon-002-caliper"></i>
+									<i class="{{$item->icone->image}}"></i>
 								</div>
 							</div>
 						<div class="d-none">
@@ -94,7 +94,7 @@
 									<p>{{$item->text}}</p>
 								</div>
 								<div class="icon">
-									<i class="flaticon-002-caliper"></i>
+									<i class="{{$item->icone->image}}"></i>
 								</div>
 							</div>
 						

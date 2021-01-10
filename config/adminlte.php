@@ -237,7 +237,7 @@ return [
         ['header' => 'Modification du site'],
         [
             'text' => 'profile',
-            'url'  => 'admin/settings',
+            'url'  => '/profil',
             'icon' => 'fas fa-fw fa-user',
         ],
         [
@@ -318,14 +318,19 @@ return [
                     'icon_color' => 'green',
                     'submenu' => [
                         [
-                            'text' => 'level_two',
+                            'text' => "creation d'article",
                             'icon_color' => 'blue',
-                            'url'  => '#',
+                            'url'  => '/article',
                         ],
                         [
-                            'text'    => 'level_two',
+                            'text'    => "creation de tag",
                             'icon_color' => 'blue',
-                            'url'     => '#',
+                            'url'     => '/tag',
+                        ],
+                        [
+                            'text'    => "creation de categorie",
+                            'icon_color' => 'blue',
+                            'url'     => '/categorie',
                         ],
                     ],
                 ],
