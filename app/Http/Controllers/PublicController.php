@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Article;
 use App\Models\Background;
+use App\Models\Commentaire;
 use App\Models\Contact;
 use App\Models\Footer;
 use App\Models\Icone;
@@ -54,16 +55,12 @@ class PublicController extends Controller
     }
     public function index2()
     {
-        $footer = Footer::all()[0];
-        $article = Article::all();
-        
-        return view('publique.blog' , compact('footer','article'));
-    }
-    public function index21()
-    {
-        $footer = Footer::all()[0];
+        $navbar = Navbar::all()[0];
+        $commentaire = Commentaire::all();
 
-        return view('publique.blog-post', compact('footer'));
+        $footer = Footer::all()[0];
+        $article = Article::orderByDesc('id')->simplePaginate(3);
+        return view('publique.blog' , compact('commentaire',"navbar",'footer','article'));
     }
     public function index3()
     {
@@ -90,5 +87,15 @@ class PublicController extends Controller
         $footer = Footer::all()[0];
 
         return view('publique.contact', compact('footer'));
+    }
+
+    public function show($id)
+    {
+        $navbar = Navbar::all()[0];
+
+        $article = Article::find($id);
+        $footer = Footer::all()[0];
+        $commentaire = Commentaire::all();
+        return view('publique.blog-post', compact("commentaire","navbar",'footer','article'));
     }
 }

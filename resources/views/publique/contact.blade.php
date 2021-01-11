@@ -1,21 +1,32 @@
 @extends('template.templateP')
 @section('content')
 	
-	<header class="header-section">
-		<div class="logo">
-			<img src="img/logo.png" alt=""><!-- Logo -->
-		</div>
-		<!-- Navigation -->
-		<div class="responsive"><i class="fa fa-bars"></i></div>
-		<nav>
-			<ul class="menu-list">
-				<li><a href="{{ Route('Accueil')}}">Home</a></li>
-				<li><a href="{{ Route('Service')}}">Services</a></li>
-				<li><a href="{{ Route('Blog')}}">Blog</a></li>
-				<li class="active"><a href="{{ Route('Contact')}}">Contact</a></li>
-			</ul>
-		</nav>
-	</header>
+<header class="header-section">
+	<div class="logo">
+		<img src="{{asset("img/logoPetit.jpg")}}" alt=""><!-- Logo -->
+	</div>
+	<!-- Navigation -->
+	<div class="responsive"><i class="fa fa-bars"></i></div>
+	<nav>
+		<ul class="menu-list">
+			<li ><a href="{{ Route('Accueil')}}">{{$navbar->page1}}</a></li>
+			<li ><a href="{{ Route('Service')}}">{{$navbar->page2}}</a></li>
+			<li ><a href="{{ Route('Blog')}}">{{$navbar->page3}}</a></li>
+			<li class="active"><a href="{{ Route('Contact')}}">{{$navbar->page4}}</a></li>
+			
+			@if (Route::has('login'))
+					@auth
+						<li><a href="{{ url('/home') }}">Oussama</a></li>
+					@else
+						<li><a href="{{ route('login') }}">Login</a></li>
+						@if (Route::has('register'))
+							<li><a href="{{ route('register') }}">Register</a></li>
+						@endif
+					@endauth
+			@endif
+		</ul>
+	</nav>
+</header>
 	<!-- Page header -->
 	<div class="page-top-section">
 		<div class="overlay"></div>

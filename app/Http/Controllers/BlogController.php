@@ -18,6 +18,7 @@ class BlogController extends Controller
     {
         $tag = Tag::all();
         $categorie = Categorie::all();
+        
         return view ('backend.blog.article',compact('tag','categorie'));
     }
     public function index2()

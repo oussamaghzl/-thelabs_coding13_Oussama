@@ -10,6 +10,10 @@ class Article extends Model
 
     use HasFactory;
 
+    public function user()
+    {
+        return $this->belongsTo(User::class,"auteur_id");
+    }
     public function tags()
     {
         return $this->belongsToMany(Tag::class);
@@ -24,5 +28,6 @@ class Article extends Model
     {
         return $this->belongsTo(Commentaire::class);
     }
+
 
 }

@@ -5,6 +5,7 @@ use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\BackgroundController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CategorieController;
+use App\Http\Controllers\CommentaireController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\FooterController;
 use App\Http\Controllers\HomeController;
@@ -52,10 +53,10 @@ Route::get('/service', [ServiceController::class, 'index']);
 Route::get('/contact', [ContactController::class, 'index']);
 Route::get('/ready', [ReadyController::class, 'index']);
 
-Route::get('/edit-ser/{id}', [ServiceController::class, 'edit']);
 
 
 //function
+Route::get('/edit-ser/{id}', [ServiceController::class, 'edit']);
 
 Route::post('/modif-navbar', [NavbarController::class, 'update']);
 Route::post('/modif-logo', [LogoController::class, 'update']);
@@ -93,11 +94,12 @@ Route::post('/edit-footer', [FooterController::class, 'update']);
 
 Route::get('/', [PublicController::class, 'index'])->name('Accueil');
 Route::get('/Blog', [PublicController::class, 'index2'])->name('Blog');
-Route::get('/Blog-post', [PublicController::class, 'index21'])->name('Blog-post');
+Route::get('/post/{id}', [PublicController::class, 'show']);
 Route::get('/Service', [PublicController::class, 'index3'])->name('Service');
 Route::get('/Contact', [PublicController::class, 'index4'])->name('Contact');
 
 
+Route::post('/add-comment', [CommentaireController::class, 'store']);
 
 
 
