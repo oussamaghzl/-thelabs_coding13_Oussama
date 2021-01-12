@@ -100,8 +100,22 @@ class BlogController extends Controller
     public function edit($id)
     {
         $article = Article::find($id);
+        $tags = Tag::all();
+        $categories = Categorie::all();
 
-        return view('backend.blog.editArticle',compact('article'));
+        $tableauTags = [];
+
+        foreach ($article->tags as $montag) {
+            $tableauTags[] = $montag->id;
+        }
+
+        $tableauCat = [];
+
+        foreach ($article->categories as $moncategories) {
+            $tableauCat[] = $moncategories->id;
+        }
+        
+        return view('backend.blog.editArticle',compact('article','tags','categories','tableauCat','tableauTags'));
     }
 
     /**

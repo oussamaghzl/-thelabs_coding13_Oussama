@@ -31,10 +31,38 @@
                         <input type="file" name="image" id="">
     
                         <label for="">Modifier le titre</label>
-                        <input type="texte" name="titre" id="">
-    
+                        <textarea name="titre" id="" cols="50" rows="1">{{$article->titre}}</textarea>
+
                         <label for="">Modifier le texte</label>
-                        <input type="texte" name="texte" id="">
+                        <textarea name="texte" id="" cols="50" rows="5">{{$article->texte}}</textarea>
+
+                        <label for="">Nos Tags</label><br>
+
+                        <div class="d-none">
+                            <input type="text" name="auteur_id" value="{{$article->auteur_id}}">
+                        </div>
+
+                        <select name="cats[]" class="city form-control" data-placeholder="Pilih Kota" style="width: 100%;" multiple="multiple">
+                            @foreach($tags as $item)
+                                @if(in_array($item->id, $tableauTags))
+                                <option value="{{ $item->id }}" selected="true">{{ $item->name }}</option>
+                                @else
+                                <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                @endif 
+                            @endforeach
+                        </select>
+                        
+                        <label for="">Nos Categories</label><br>
+
+                        <select name="tabcateg[]" class="city form-control" data-placeholder="Pilih Kota" style="width: 100%;" multiple="multiple">
+                            @foreach($categories as $item)
+                                @if(in_array($item->id, $tableauCat))
+                                <option value="{{ $item->id }}" selected="true">{{ $item->name }}</option>
+                                @else
+                                <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                @endif 
+                            @endforeach
+                        </select>
 
                         <div class="d-flex my-5">
 

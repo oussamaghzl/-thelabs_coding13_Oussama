@@ -68,6 +68,9 @@ Route::post('/add-article', [ArticleController::class, 'store']);
 Route::post('/add-tag', [TagController::class, 'store']);
 Route::post('/add-categorie', [CategorieController::class, 'store']);
 
+Route::post('/edit-article/{id}', [ArticleController::class, 'update']);
+Route::post('/delete-article/{id}', [ArticleController::class, 'destroy']);
+
 
 
 

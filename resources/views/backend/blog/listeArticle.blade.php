@@ -18,11 +18,18 @@
                         <h3>{{$item->titre}}</h3>
                         <p class="card-text">{{$item->texte}}</p>
                         <h1 class="card-text"><small class="text-muted">Check : </small></h1>
-                        <a href="/article-edit/{{$item->id}}">
-                            <button class="btn btn-warning">
-                                EDIT
-                            </button>
-                        </a>
+                        <div class="d-flex">
+                            <a href="/article-edit/{{$item->id}}">
+                                <button class="btn btn-warning">
+                                    EDIT
+                                </button>
+                            </a>
+                            <form class="ml-5" action="/delete-article/{{$item->id}}" method="post" enctype="multipart/form-data">
+                                @csrf
+                                <button type="submit" class="btn btn-danger">DELETE</button>
+                            </form>
+                        </div>
+
                         </div>
                     </div>
                 </div>

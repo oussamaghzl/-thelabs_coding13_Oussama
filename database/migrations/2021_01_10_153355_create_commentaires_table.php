@@ -20,7 +20,7 @@ class CreateCommentairesTable extends Migration
             $table->string('texte');
 
             $table->unsignedBigInteger('article_id');
-            $table->foreign('article_id')->references('id')->on('articles');
+            $table->foreign('article_id')->references('id')->on('articles')->onDelete('cascade');
             
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');

@@ -36,6 +36,7 @@ class CommentaireController extends Controller
      */
     public function store(Request $request)
     {
+
         $addCommentaire = new Commentaire();
 
         $addCommentaire->texte = $request->texte;
@@ -45,6 +46,7 @@ class CommentaireController extends Controller
         $addCommentaire ->save();
         
         return redirect()->back();
+        
     }
 
     /**

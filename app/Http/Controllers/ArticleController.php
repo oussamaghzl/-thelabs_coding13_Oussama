@@ -91,23 +91,16 @@ class ArticleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $validateForm = $request->validate([
-
-            "titre" => "required",
-            "date" => "required",
-            "image" => "required",
-
-        ]);
 
         $newArticle = Article::find($id);
 
         $newArticle->titre = $request->titre;
-        $newArticle->date = $request->date;
         $newArticle->auteur_id = Auth::user()->id;
         $newArticle->image = $request->file('image')->hashName();
 
         $newArticle->save();
-
+        $newArticle->categories()->detach();
+        $newArticle->tags()->detach();
         $newArticle->tags()->syncWithoutDetaching($request->cats);
         $newArticle->categories()->syncWithoutDetaching($request->tabcateg);
 
@@ -126,8 +119,14 @@ class ArticleController extends Controller
      * @param  \App\Models\Article  $article
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Article $article)
+    public function destroy($id)
     {
-        //
+        $delete = Article::find($id);
+
+        $delete->tags()->detach();
+        $delete->categories()->detach();
+        
+        $delete->delete();
+        return redirect()->back();
     }
 }
