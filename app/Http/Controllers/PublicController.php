@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Article;
 use App\Models\Background;
+use App\Models\Categorie;
 use App\Models\Commentaire;
 use App\Models\Contact;
 use App\Models\Footer;
@@ -11,6 +12,7 @@ use App\Models\Icone;
 use App\Models\Navbar;
 use App\Models\Ready;
 use App\Models\Service;
+use App\Models\Tag;
 use App\Models\Team;
 use App\Models\Testimonials;
 use App\Models\Titre;
@@ -58,9 +60,12 @@ class PublicController extends Controller
         $navbar = Navbar::all()[0];
         $commentaire = Commentaire::all();
 
+        $categories =Categorie::all();
+        $tags = Tag::all();
+
         $footer = Footer::all()[0];
         $article = Article::orderByDesc('id')->simplePaginate(3);
-        return view('publique.blog' , compact('commentaire',"navbar",'footer','article'));
+        return view('publique.blog' , compact('commentaire',"navbar",'footer','article','categories','tags'));
     }
     public function index3()
     {
@@ -79,14 +84,16 @@ class PublicController extends Controller
         $servicepage = Service::orderByDesc('id')->limit(6)->get();
         $limite = 0;
         $footer = Footer::all()[0];
+        $navbar = Navbar::all()[0];
 
-        return view('publique.services',compact('footer','service','servicepage','limite','tab'));
+        return view('publique.services',compact('navbar','footer','service','servicepage','limite','tab'));
     }
     public function index4()
     {
         $footer = Footer::all()[0];
+        $navbar = Navbar::all()[0];
 
-        return view('publique.contact', compact('footer'));
+        return view('publique.contact', compact('footer','navbar'));
     }
 
     public function show($id)

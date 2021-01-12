@@ -26,7 +26,7 @@ class Article extends Model
 
     public function commentaire()
     {
-        return $this->belongsTo(Commentaire::class);
+        return $this->belongsToMany(Commentaire::class);
     }
 
 

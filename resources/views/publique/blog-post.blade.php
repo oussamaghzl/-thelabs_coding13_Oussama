@@ -54,8 +54,8 @@
 						<div class="post-thumbnail">
 							<img src="{{asset('img/'. $article->image)}}" alt="">
 							<div class="post-date">
-								<h2>03</h2>
-								<h3>Nov 2017</h3>
+								<h2>{{$article->created_at->format('d')}}</h2>
+								<h3>{{$article->created_at->format('M')}} {{$article->created_at->format('Y')}}</h3>
 							</div>
 						</div>
 						<div class="post-content">
@@ -66,7 +66,19 @@
 
 								@endforeach
 								
-								<a href="">Comments ({{ $commentaire->id }})</a>
+
+
+								<div class="d-none">{{$a=0}}</div>
+
+									@foreach ($commentaire as $elem)
+										@if ($elem->article_id == $article->id)
+												<div class="d-none">{{$a++}}</div>
+										@else
+									@endif
+
+								@endforeach
+
+								<a href="">Comment ({{$a}})</a>
 								
 							</div>
 							<p>{{$article->texte}}</p>
@@ -83,47 +95,73 @@
 						</div>
 						<!-- Post Comments -->
 						<div class="comments">
+							
+							<h2>Comments ({{$a}})</h2>
+
 							<ul class="comment-list">
 								@foreach ($commentaire as $item)
 
-									<li>
-										<div class="avatar">
-											<img src="{{asset('img/'. $item->user->pdp)}}" alt="">
-										</div>
-										<div class="commetn-text">
-											<h3>{{$item->user->name}} | 03 nov, 2017 | Reply</h3>
-											<p>{{$item->texte}}</p>
-										</div>
-									</li>
-									
+									@if ($item->article_id == $article->id)
+
+										<div class="d-none">{{$a++}}</div>
+
+										<li>
+											<div class="avatar">
+												<img src="{{asset('img/'. $item->user->pdp)}}" alt="">
+											</div>
+											<div class="commetn-text">
+												<h3>{{$item->user->name}} | {{$article->created_at->format('d')}} {{$article->created_at->format('M')}}, {{$article->created_at->format('Y')}} | Reply</h3>
+												<p>{{$item->texte}}</p>
+											</div>
+										</li>
+
+									@endif
+
 								@endforeach
 								
 							</ul>
 						</div>
 						<!-- Commert Form -->
-						<div class="row">
-							<div class="col-md-9 comment-from">
-								<h2>Leave a comment</h2>
-								<form class="form-class" method="POST" action="/add-comment">
-									@csrf
-									<div class="row">
-										<div class="col-sm-6">
-											<input type="text" disabled  value="{{Auth::user()->name}}" placeholder="Your name">
-										</div>
-										<div class="col-sm-6">
-											<input type="text" value="{{Auth::user()->email}}" disabled placeholder="Your email">
-										</div>
-										<div class="col-sm-12">
-											<input class="d-none" name="article_id" value="{{$article->id}}">
+						
+						@if (Auth::check())
+							<div class="row">
+								<div class="col-md-9 comment-from">
+									<h2>Leave a comment</h2>
+									<form class="form-class" method="POST" action="/add-comment">
+										@csrf
+										<div class="row">
+											<div class="col-sm-6">
+												<input type="text" disabled  value="{{Auth::user()->name}}" placeholder="Your name">
+											</div>
+											<div class="col-sm-6">
+												<input type="text" value="{{Auth::user()->email}}" disabled placeholder="Your email">
+											</div>
+											<div class="col-sm-12">
+												<input class="d-none" name="article_id" value="{{$article->id}}">
 
-											<textarea name="texte" placeholder="Message"></textarea>
-											
-											<button class="site-btn" type="submit">Send</button>
+												<textarea name="texte" placeholder="Message"></textarea>
+												
+												<button class="site-btn" type="submit">Send</button>
+											</div>
 										</div>
-									</div>
-								</form>
+									</form>
+								</div>
 							</div>
-						</div>
+							
+						@else
+
+							<div class="row" >
+								<button style="font-size: 30px" class="mr-5 btn btn-primary">
+									<a class="px-3 text-white " href="{{ route('login') }}">Login</a>
+								</button>
+								@if (Route::has('register'))
+								<button style="font-size: 30px" class="btn btn-danger">
+									<a class="px-3 text-white " href="{{ route('register') }}">Register</a>
+								</button>
+								@endif
+							</div>
+
+						@endif
 					</div>
 				</div>
 				<!-- Sidebar area -->

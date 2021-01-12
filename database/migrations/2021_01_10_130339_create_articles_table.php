@@ -17,9 +17,8 @@ class CreateArticlesTable extends Migration
             $table->id();
             
             $table->string('titre');
-            $table->string('date');
             $table->string('image');
-            $table->string('texte');
+            $table->string('texte',5000);
             $table->unsignedBigInteger('auteur_id');
             $table->foreign("auteur_id")->references('id')->on('users');
 

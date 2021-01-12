@@ -14,6 +14,7 @@ class CreateCommentairesTable extends Migration
     public function up()
     {
         Schema::create('commentaires', function (Blueprint $table) {
+            
             $table->id();
 
             $table->string('texte');
@@ -25,6 +26,7 @@ class CreateCommentairesTable extends Migration
             $table->foreign('user_id')->references('id')->on('users');
             
             $table->timestamps();
+
         });
     }
 

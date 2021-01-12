@@ -40,15 +40,12 @@ class ArticleController extends Controller
         $validateForm = $request->validate([
             "titre" => "required",
             "texte" => "required",
-
-            "date" => "required",
             "image" => "required",
         ]);
 
         $newArticle = new Article();
         
         $newArticle->titre = $request->titre;
-        $newArticle->date = $request->date;
         $newArticle->texte = $request->texte;
         $newArticle->auteur_id = Auth::user()->id;
         $newArticle->image = $request->file('image')->hashName();

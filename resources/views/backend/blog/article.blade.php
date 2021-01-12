@@ -40,10 +40,6 @@
                                     <input type="text" class="form-control" id="1t" value="{{ old('titre') }}" name="titre" >
                                 </div>
                                 <div class="form-group">
-                                    <label for="2t">Date de l'article</label>
-                                    <input type="date" class="form-control" id="2t" value="{{ old('date') }}" name="date" >
-                                </div>
-                                <div class="form-group">
                                     <label for="exampleFormControlTextarea1">Texte</label>
                                     <textarea class="form-control" name="texte" id="exampleFormControlTextarea1" rows="3"></textarea>
                                   </div>
