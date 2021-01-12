@@ -40,8 +40,6 @@ Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
-
-//Accueil
 Route::get('/profil', [ProfilController::class, 'index'])->name('profil');
 
 Route::get('/navbar', [LogoController::class, 'index'])->name('navbar');
@@ -53,6 +51,23 @@ Route::get('/service', [ServiceController::class, 'index']);
 Route::get('/contact', [ContactController::class, 'index']);
 Route::get('/ready', [ReadyController::class, 'index']);
 Route::get('/googleMaps', [ContactController::class, 'index2'])->name('googleMaps');
+
+Route::get('/article', [BlogController::class, 'index1'])->name('article');
+Route::get('/categorie', [BlogController::class, 'index3'])->name('categorie');
+Route::get('/tag', [BlogController::class, 'index2'])->name('tag');
+Route::get('/liste-article', [BlogController::class, 'index4'])->name('liste-article');
+
+Route::get('/article-edit/{id}', [BlogController::class, 'edit']);
+
+
+
+Route::get('/search', [BlogController::class , 'search']);
+
+
+Route::post('/add-article', [ArticleController::class, 'store']);
+Route::post('/add-tag', [TagController::class, 'store']);
+Route::post('/add-categorie', [CategorieController::class, 'store']);
+
 
 
 
@@ -103,15 +118,4 @@ Route::get('/Contact', [PublicController::class, 'index4'])->name('Contact');
 Route::post('/add-comment', [CommentaireController::class, 'store']);
 
 
-// Administrateur
-
-Route::get('/article', [BlogController::class, 'index1'])->name('article');
-Route::get('/categorie', [BlogController::class, 'index3'])->name('categorie');
-Route::get('/tag', [BlogController::class, 'index2'])->name('tag');
-Route::get('/search', [BlogController::class , 'search']);
-
-
-Route::post('/add-article', [ArticleController::class, 'store']);
-Route::post('/add-tag', [TagController::class, 'store']);
-Route::post('/add-categorie', [CategorieController::class, 'store']);
 

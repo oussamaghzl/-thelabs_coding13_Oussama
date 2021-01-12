@@ -48,7 +48,7 @@
                                 <input type="text" name="email" style="width: 60vh" value="{{$contact->email}}" id="">
                             </li>
 
-
+                            
                             
 
                             <li class="bg-dark px-2 py-2 text-right">

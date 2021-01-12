@@ -16,11 +16,34 @@ class UserSeeder extends Seeder
     public function run()
     {
         DB::table('users')->insert([
-            'name' => 'Oussama',
-            'email' => 'admin@gmail.com',
-            "pdp" => "avatar/pdp.jpg",
-            'password' => Hash::make('uncharted'),
-            'role_id' => '1',
+            [
+                'name' => 'Oussama',
+                'email' => 'admin@gmail.com',
+                "pdp" => "avatar/01.jpg",
+                'password' => Hash::make('uncharted'),
+                'role_id' => '1',
+            ],
+            [
+                'name' => 'Zidane',
+                'email' => 'webmaster@gmail.com',
+                "pdp" => "avatar/goku.png",
+                'password' => Hash::make('uncharted'),
+                'role_id' => '2',
+            ],
+            [
+                'name' => 'Abdelmajid',
+                'email' => 'redacteur@gmail.com',
+                "pdp" => "avatar/02.jpg",
+                'password' => Hash::make('uncharted'),
+                'role_id' => '3',
+            ],
+            [
+                'name' => 'Nanami',
+                'email' => 'membre@gmail.com',
+                "pdp" => "avatar/03.jpg",
+                'password' => Hash::make('uncharted'),
+                'role_id' => '4',
+            ]
         ]);
     }
 }

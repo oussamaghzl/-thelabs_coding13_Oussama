@@ -309,6 +309,11 @@ return [
                     'icon_color' => 'green',
                     'submenu' => [
                         [
+                            'text' => "liste des articles",
+                            'icon_color' => 'blue',
+                            'url'  => '/liste-article',
+                        ],
+                        [
                             'text' => "creation d'article",
                             'icon_color' => 'blue',
                             'url'  => '/article',

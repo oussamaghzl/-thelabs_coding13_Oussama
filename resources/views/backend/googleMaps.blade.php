@@ -3,7 +3,7 @@
 @section('title', 'AdminLTE')
 
 @section('content_header')
-    <h1 class="m-0 text-light">Contact</h1>
+    <h1 class="m-0 text-light">GOOGLE MAPS</h1>
 @stop
 
 @section('content')
@@ -49,7 +49,7 @@
                                 </li>
                             </div>
                             <li class="bg-dark border-bottom px-2 py-3">
-                                <input type="text" name="recherche" style="width: 60vh" value="{{$contact->recherche}}" id="">
+                                <input type="text" name="recherche" style="width: 60vh" class="px-4 py-3" value="{{$contact->recherche}}" id="">
                             </li>
 
                             <li class="bg-dark px-2 py-2 text-right">

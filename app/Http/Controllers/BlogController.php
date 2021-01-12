@@ -9,6 +9,7 @@ use App\Models\Commentaire;
 use App\Models\Footer;
 use App\Models\Navbar;
 use App\Models\Tag;
+use Database\Seeders\ArticleSeeder;
 use Illuminate\Http\Request;
 
 class BlogController extends Controller
@@ -33,6 +34,13 @@ class BlogController extends Controller
     public function index3()
     {
         return view ('backend.blog.categorie');
+
+    }
+    public function index4()
+    {
+        $article = Article::all();
+        
+        return view ('backend.blog.listeArticle',compact('article'));
 
     }
     public function search()
@@ -89,9 +97,11 @@ class BlogController extends Controller
      * @param  \App\Models\Blog  $blog
      * @return \Illuminate\Http\Response
      */
-    public function edit(Blog $blog)
+    public function edit($id)
     {
-        //
+        $article = Article::find($id);
+
+        return view('backend.blog.editArticle',compact('article'));
     }
 
     /**

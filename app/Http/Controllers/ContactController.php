@@ -86,6 +86,7 @@ class ContactController extends Controller
         $modifContact->codepostal = $request->codepostal;
         $modifContact->telephone = $request->telephone;
         $modifContact->email = $request->email;
+        $modifContact->recherche = $request->recherche;
 
         $modifContact->save();
 
