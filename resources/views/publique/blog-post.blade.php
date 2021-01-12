@@ -86,7 +86,7 @@
 						<!-- Post Author -->
 						<div class="author">
 							<div class="avatar">
-								<img width="100px" src="{{asset('img/'. $article->user->pdp)}}" alt="">
+								<img  src="{{asset('img/'. $article->user->pdp)}}" alt="">
 							</div>
 							<div class="author-info">
 								<h2>{{$article->user->name}}, <span>Author</span></h2>
@@ -165,22 +165,30 @@
 					</div>
 				</div>
 				<!-- Sidebar area -->
+
 				<div class="col-md-4 col-sm-5 sidebar">
+
 					<!-- Single widget -->
+
 					<div class="widget-item">
-						<form action="#" class="search-form">
-							<input type="text" placeholder="Search">
-							<button class="search-btn"><i class="flaticon-026-search"></i></button>
+						<form action="/search" method="get" class="search-form">
+
+							<input type="text" name="query" placeholder="Search">
+							<button type="submit" class="search-btn"><i class="flaticon-026-search"></i></button>
 						</form>
 					</div>
+
 					<!-- Single widget -->
+
 					<div class="widget-item">
+
 						<h2 class="widget-title">Categories</h2>
 						<ul>
 							@foreach ($article->categories as $item)
 								<li><a href="#">{{$item->name}}</a></li>
 							@endforeach
 						</ul>
+
 					</div>
 					
 					<!-- Single widget -->

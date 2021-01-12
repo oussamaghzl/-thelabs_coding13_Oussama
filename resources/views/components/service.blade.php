@@ -26,7 +26,11 @@
             </div>
             
 
-            <div class="text-center my-5">{{ $service->render() }}</div>
+            
+            <div class="text-center my-5">{!! $service->links() !!}</div>
+
+
+
             <div class="text-center">
                 <a href="" class="site-btn">Browse</a>
             </div>

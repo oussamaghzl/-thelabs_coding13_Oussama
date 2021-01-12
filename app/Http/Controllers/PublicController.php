@@ -79,21 +79,28 @@ class PublicController extends Controller
         }
 
 
-        $service = Service::orderByDesc('id')->simplePaginate(9);
+        $service = Service::orderByDesc('id')->paginate(9);
+
+
+
+        $article = Article::orderByDesc('id')->limit(3)->get();
+
+        
 
         $servicepage = Service::orderByDesc('id')->limit(6)->get();
         $limite = 0;
         $footer = Footer::all()[0];
         $navbar = Navbar::all()[0];
 
-        return view('publique.services',compact('navbar','footer','service','servicepage','limite','tab'));
+        return view('publique.services',compact('article','navbar','footer','service','servicepage','limite','tab'));
+
     }
     public function index4()
     {
         $footer = Footer::all()[0];
         $navbar = Navbar::all()[0];
-
-        return view('publique.contact', compact('footer','navbar'));
+        $contact = Contact::all()[0];
+        return view('publique.contact', compact('footer','navbar',"contact"));
     }
 
     public function show($id)
@@ -105,4 +112,9 @@ class PublicController extends Controller
         $commentaire = Commentaire::all();
         return view('publique.blog-post', compact("commentaire","navbar",'footer','article'));
     }
+
+
+
+
+    
 }

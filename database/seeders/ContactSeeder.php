@@ -20,6 +20,7 @@ class ContactSeeder extends Seeder
             'codepostal' => '05200 Arévalo',
             'telephone' => '0034 37483 2445 322',
             'email' => 'hello@company.com',
+            'recherche' => 'molengeek',
         ]);
     }
 }

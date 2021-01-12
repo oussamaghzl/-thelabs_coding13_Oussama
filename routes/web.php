@@ -52,6 +52,7 @@ Route::get('/testimonial', [TestimonialsController::class, 'index']);
 Route::get('/service', [ServiceController::class, 'index']);
 Route::get('/contact', [ContactController::class, 'index']);
 Route::get('/ready', [ReadyController::class, 'index']);
+Route::get('/googleMaps', [ContactController::class, 'index2'])->name('googleMaps');
 
 
 
@@ -102,13 +103,12 @@ Route::get('/Contact', [PublicController::class, 'index4'])->name('Contact');
 Route::post('/add-comment', [CommentaireController::class, 'store']);
 
 
-
 // Administrateur
 
 Route::get('/article', [BlogController::class, 'index1'])->name('article');
 Route::get('/categorie', [BlogController::class, 'index3'])->name('categorie');
 Route::get('/tag', [BlogController::class, 'index2'])->name('tag');
-
+Route::get('/search', [BlogController::class , 'search']);
 
 
 Route::post('/add-article', [ArticleController::class, 'store']);

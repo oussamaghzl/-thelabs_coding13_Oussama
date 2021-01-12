@@ -36,6 +36,7 @@ class TeamController extends Controller
      */
     public function store(Request $request)
     {
+        
         $validateForm = $request->validate([
             "name" => "required",
             "photo" => "required",
@@ -50,12 +51,11 @@ class TeamController extends Controller
         $addTeam->fonction = $request->fonction;
 
         $addTeam ->save();
-        
-        Storage::disk('public')->delete('img/' . $addTeam->photo);
-        
+                
         $request->file('photo')->storePublicly('img','public');
 
         return redirect()->back();
+
     }
 
     /**

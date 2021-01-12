@@ -97,20 +97,18 @@
 							</div>						
 						@endforeach
 						
-						{{ $article->links('') }}
-
 						
 					</div>
 					<!-- Sidebar area -->
 					<div class="col-md-4 col-sm-5 sidebar">
 						<!-- Single widget -->
 						<div class="widget-item">
-						<form action="/search" method="get" class="search-form">
-
-							<input type="text" name="query" placeholder="Search">
-							<button type="submit" class="search-btn"><i class="flaticon-026-search"></i></button>
-						</form>
-					</div>
+                            <form action="/search" method="get" class="search-form">
+    
+                                <input type="text" name="query" placeholder="Search">
+                                <button type="submit" class="search-btn"><i class="flaticon-026-search"></i></button>
+                            </form>
+                        </div>
 						<!-- Single widget -->
 						<div class="widget-item">
 							<h2 class="widget-title">Categories</h2>

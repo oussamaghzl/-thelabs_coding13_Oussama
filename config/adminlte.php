@@ -289,11 +289,7 @@ return [
                             'icon_color' => 'blue',
                             'url'     => '/ready',
                         ],
-                        [
-                            'text'    => 'Nos Service',
-                            'icon_color' => 'blue',
-                            'url'     => '/service',
-                        ],
+                        
                         
                     ],
                 ],
@@ -302,14 +298,9 @@ return [
                     'icon_color' => 'green',
                     'submenu' => [
                         [
-                            'text' => 'level_two',
+                            'text'    => 'Nos Service',
                             'icon_color' => 'blue',
-                            'url'  => '#',
-                        ],
-                        [
-                            'text'    => 'level_two',
-                            'icon_color' => 'blue',
-                            'url'     => '#',
+                            'url'     => '/service',
                         ],
                     ],
                 ],
@@ -342,6 +333,11 @@ return [
                             'text'    => 'Edit',
                             'icon_color' => 'blue',
                             'url'     => '/contact',
+                        ],
+                        [
+                            'text'    => 'Google Maps',
+                            'icon_color' => 'blue',
+                            'url'     => '/googleMaps',
                         ],
                     ],
                 ],

@@ -19,6 +19,13 @@ class ContactController extends Controller
         return view('backend.contact',compact('contact'));
     }
 
+    public function index2()
+    {
+        $contact = Contact::all()[0];
+
+        return view('backend.googleMaps',compact('contact'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *

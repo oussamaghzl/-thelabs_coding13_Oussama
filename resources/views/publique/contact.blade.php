@@ -44,9 +44,7 @@
 
 
 	<!-- Google map -->
-	<div class="map" id="map-area"></div>
-
-
+	<iframe width="100%" height="600vh" src="https://maps.google.com/maps?q={{$contact->recherche}}&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0"></iframe>
 	<!-- Contact section -->
 	<div class="contact-section spad fix">
 		<div class="container">

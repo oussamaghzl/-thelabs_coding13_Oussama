@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Article;
 use App\Models\Blog;
 use App\Models\Categorie;
+use App\Models\Commentaire;
+use App\Models\Footer;
+use App\Models\Navbar;
 use App\Models\Tag;
 use Illuminate\Http\Request;
 
@@ -29,6 +33,21 @@ class BlogController extends Controller
     public function index3()
     {
         return view ('backend.blog.categorie');
+
+    }
+    public function search()
+    {
+        $tags = Tag::all();
+        $categories = Categorie::all();
+        $navbar = Navbar::all()[0];
+        $commentaire = Commentaire::all();
+        $footer = Footer::all()[0];
+
+        $search_text = $_GET['query'];
+
+        $article = Article::where('titre','LIKE','%'. $search_text .'%')->get();
+
+        return view('publique.postSearch', compact('footer','article',"tags",'categories','navbar','commentaire'));
 
     }
 
