@@ -246,6 +246,13 @@ return [
             'icon' => 'fas fa-fw fa-lock',
         ],
         [
+            'text' => 'MailBox',
+            'icon' => 'fas fa-fw fa-lock',
+            'submenu' => [
+                
+            ],
+        ],
+        [
             'text'    => 'Catégorie',
             'icon_color' => 'yellow',
             'submenu' => [

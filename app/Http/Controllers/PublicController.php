@@ -99,13 +99,14 @@ class PublicController extends Controller
                 array_push($articlePublie,$art);
             }
         }
+        $contact = Contact::all()[0];
 
         $servicepage = Service::orderByDesc('id')->limit(6)->get();
         $limite = 0;
         $footer = Footer::all()[0];
         $navbar = Navbar::all()[0];
 
-        return view('publique.services',compact('articlePublie','navbar','footer','service','servicepage','limite','tab'));
+        return view('publique.services',compact('contact','articlePublie','navbar','footer','service','servicepage','limite','tab'));
 
     }
     public function index4()

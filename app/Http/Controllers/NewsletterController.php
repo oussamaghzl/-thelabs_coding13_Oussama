@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Newsletter;
+use App\Notifications\NewsletterMessage;
 use Illuminate\Http\Request;
 
 class NewsletterController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -37,12 +39,23 @@ class NewsletterController extends Controller
     {
         $validateForm = $request->validate([
             "email" => "required",
+           
         ]);
-        
+
         $newNewsletter = new Newsletter();
 
         $newNewsletter->email = $request->email;
 
+        $allNews = Newsletter::all();
+
+        foreach ($allNews as $elem) {
+            if ($elem->email == $newNewsletter->email) {
+                $elem->notify(new NewsletterMessage($newNewsletter));
+            } else {
+                
+            }
+            
+        }
         $newNewsletter->save();
 
         return redirect()->back();

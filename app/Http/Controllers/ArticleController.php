@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Mail\MailSender;
 use App\Models\Article;
 use App\Models\Newsletter;
+use App\Notifications\messagePublished;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
@@ -101,20 +102,14 @@ class ArticleController extends Controller
         
         $newArticle = Article::find($id);
         $newArticle->check = $request->check;
-        $newArticle->save();
         
-        $details = [
-            'title' => $newArticle->titre . ' par ' . $newArticle->user->name,
-            'body' => Str::limit($newArticle->texte, 100, ' ... READ MORE'), 
-        ];
         
         $mails = Newsletter::all();
-
         foreach ($mails as $elem) {
-            Mail::to($elem->email)->send(new MailSender($details));
-
+            $elem->notify(new messagePublished($newArticle));
         }
-
+        
+        $newArticle->save();
      
         return redirect()->back();
 
