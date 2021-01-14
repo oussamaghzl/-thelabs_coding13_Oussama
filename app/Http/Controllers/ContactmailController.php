@@ -2,15 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Mail\ContactSender;
-use App\Mail\MailSender;
-use App\Models\Contact;
 use App\Models\contactmail;
-use App\Models\Email;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Mail;
 
-class EmailController extends Controller
+class ContactmailController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -32,19 +27,6 @@ class EmailController extends Controller
         //
     }
 
-    public function sendmail(Request $request)
-    {
-
-        $contact = [
-            "name" => "Message de " . $request->name,
-            'subject' => $request->subject,
-            'message' => $request->message, 
-        ];
-
-        Mail::to('bencleyhd@gmail.com')->send(new ContactSender($contact));
-
-        return redirect()->back();
-    }
     /**
      * Store a newly created resource in storage.
      *
@@ -53,17 +35,16 @@ class EmailController extends Controller
      */
     public function store(Request $request)
     {
-        //        
+        //
     }
 
-    
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Email  $email
+     * @param  \App\Models\contactmail  $contactmail
      * @return \Illuminate\Http\Response
      */
-    public function show(Email $email)
+    public function show(contactmail $contactmail)
     {
         //
     }
@@ -71,10 +52,10 @@ class EmailController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Email  $email
+     * @param  \App\Models\contactmail  $contactmail
      * @return \Illuminate\Http\Response
      */
-    public function edit(Email $email)
+    public function edit(contactmail $contactmail)
     {
         //
     }
@@ -83,10 +64,10 @@ class EmailController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Email  $email
+     * @param  \App\Models\contactmail  $contactmail
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Email $email)
+    public function update(Request $request, contactmail $contactmail)
     {
         //
     }
@@ -94,10 +75,10 @@ class EmailController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Email  $email
+     * @param  \App\Models\contactmail  $contactmail
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Email $email)
+    public function destroy(contactmail $contactmail)
     {
         //
     }

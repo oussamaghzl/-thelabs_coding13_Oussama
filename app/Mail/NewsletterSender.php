@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class MailSender extends Mailable
+class NewsletterSender extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -16,11 +16,9 @@ class MailSender extends Mailable
      *
      * @return void
      */
-    public $details;
-
-    public function __construct($details)
+    public function __construct()
     {
-        $this->details = $details;
+        //
     }
 
     /**
@@ -30,7 +28,6 @@ class MailSender extends Mailable
      */
     public function build()
     {
-        return $this->subject('Subject: Nouveau post disponible')
-                    ->view('emails.sendmail');
+        return $this->view('view.name');
     }
 }

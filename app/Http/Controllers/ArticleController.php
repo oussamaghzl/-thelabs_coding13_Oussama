@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\MailSender;
 use App\Models\Article;
+use App\Models\Newsletter;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class ArticleController extends Controller
 {
@@ -35,6 +39,8 @@ class ArticleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
+
     public function store(Request $request)
     {
         $validateForm = $request->validate([
@@ -89,13 +95,38 @@ class ArticleController extends Controller
      * @param  \App\Models\Article  $article
      * @return \Illuminate\Http\Response
      */
+
+    public function update2(Request $request, $id)
+    {
+        
+        $newArticle = Article::find($id);
+        $newArticle->check = $request->check;
+        $newArticle->save();
+        
+        $details = [
+            'title' => $newArticle->titre . ' par ' . $newArticle->user->name,
+            'body' => Str::limit($newArticle->texte, 100, ' ... READ MORE'), 
+        ];
+        
+        $mails = Newsletter::all();
+
+        foreach ($mails as $elem) {
+            Mail::to($elem->email)->send(new MailSender($details));
+
+        }
+
+     
+        return redirect()->back();
+
+        
+    }
     public function update(Request $request, $id)
     {
 
         $newArticle = Article::find($id);
 
         $newArticle->titre = $request->titre;
-        $newArticle->auteur_id = Auth::user()->id;
+        $newArticle->auteur_id = $request->auteur_id;
         $newArticle->image = $request->file('image')->hashName();
 
         $newArticle->save();
@@ -110,7 +141,6 @@ class ArticleController extends Controller
 
         return redirect()->back();
 
-        
     }
 
     /**

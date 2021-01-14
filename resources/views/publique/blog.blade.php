@@ -52,52 +52,54 @@
 					<div class="col-md-8 col-sm-7 blog-posts">
 
 						@foreach ($article as $item)
+							@if ($item->check == 'oui')
+								<div class="post-item">
 
-							<div class="post-item">
-
-								<div class="post-thumbnail">
-									<img src="{{asset('img/'. $item->image)}}" alt="">
-									<div class="post-date">
-										<h2>{{$item->created_at->format('d')}}</h2>
-                                    	<h3>{{$item->created_at->format('M')}} {{$item->created_at->format('Y')}}</h3>
+									<div class="post-thumbnail">
+										<img src="{{asset('img/'. $item->image)}}" alt="">
+										<div class="post-date">
+											<h2>{{$item->created_at->format('d')}}</h2>
+											<h3>{{$item->created_at->format('M')}} {{$item->created_at->format('Y')}}</h3>
+										</div>
 									</div>
-								</div>
-								<div class="post-content">
+									<div class="post-content">
 
-									<h2 class="post-title">{{$item->titre}}</h2>
+										<h2 class="post-title">{{$item->titre}}</h2>
 
-									<div class="post-meta">
+										<div class="post-meta">
 
-										@foreach ($item->tags as $elem)
-											<a href="">{{$elem->name}}</a>
-										@endforeach
-										
-										
-										<div class="d-none">{{$a=0}}</div>
+											@foreach ($item->tags as $elem)
+												<a href="">{{$elem->name}}</a>
+											@endforeach
+											
+											
+											<div class="d-none">{{$a=0}}</div>
 
-										@foreach ($commentaire as $elem)
-											@if ($elem->article_id == $item->id)
-												<div class="d-none">{{$a++}}</div>
-											@else
-											@endif
+											@foreach ($commentaire as $elem)
+												@if ($elem->article_id == $item->id)
+													<div class="d-none">{{$a++}}</div>
+												@else
+												@endif
 
-										@endforeach
+											@endforeach
 
-										<a href="">Comment ({{$a}})</a>
+											<a href="">Comment ({{$a}})</a>
 
+
+										</div>
+
+										<p> {{Str::limit($item->texte, 300, ' ...') }} </p>
+
+										<a href="/post/{{$item->id}}" class="read-more">Read More</a>
 
 									</div>
 
-									<p> {{Str::limit($item->texte, 300, ' ...') }} </p>
-
-									<a href="/post/{{$item->id}}" class="read-more">Read More</a>
-
-								</div>
-
-							</div>						
+								</div>						
+						
+							@endif
 						@endforeach
 						
-						{{ $article->links('') }}
+						{{ $article->links() }}
 
 						
 					</div>
@@ -143,22 +145,6 @@
 		<!-- page section end-->
 	
 	
-		<!-- newsletter section -->
-		<div class="newsletter-section spad">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-3">
-						<h2>Newsletter</h2>
-					</div>
-					<div class="col-md-9">
-						<!-- newsletter form -->
-						<form class="nl-form">
-							<input type="text" placeholder="Your e-mail here">
-							<button class="site-btn btn-2">Newsletter</button>
-						</form>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- newsletter section end-->
+		@include('components.newsletter')
+
 @endsection

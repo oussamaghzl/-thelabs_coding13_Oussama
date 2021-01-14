@@ -7,10 +7,12 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\CommentaireController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\EmailController;
 use App\Http\Controllers\FooterController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LogoController;
 use App\Http\Controllers\NavbarController;
+use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\PublicController;
 use App\Http\Controllers\ReadyController;
@@ -69,6 +71,8 @@ Route::post('/add-tag', [TagController::class, 'store']);
 Route::post('/add-categorie', [CategorieController::class, 'store']);
 
 Route::post('/edit-article/{id}', [ArticleController::class, 'update']);
+Route::post('/edit-check/{id}', [ArticleController::class, 'update2']);
+
 Route::post('/delete-article/{id}', [ArticleController::class, 'destroy']);
 
 
@@ -107,6 +111,12 @@ Route::post('/edit-footer', [FooterController::class, 'update']);
 // Route::get('/edit-footer', [FooterController::class, 'update']);
 // Route::post('/edit-footer', [FooterController::class, 'update']);
 
+// Mailling
+
+
+Route::post('/send-contact',[EmailController::class,'sendmail']);
+
+Route::post('add-newsletter',[NewsletterController::class,'store']);
 
 
 // Publique

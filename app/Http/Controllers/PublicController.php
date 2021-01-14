@@ -57,6 +57,15 @@ class PublicController extends Controller
     }
     public function index2()
     {
+        $titre = Titre::all();
+        $tab = [];
+
+        foreach($titre as $title){
+            $str = Str::of($title->titre)->replace('(', '<span>');
+            $str2 = Str::of($str)->replace(')','</span>');
+            array_push($tab, $str2);
+        }
+
         $navbar = Navbar::all()[0];
         $commentaire = Commentaire::all();
 
@@ -65,7 +74,8 @@ class PublicController extends Controller
 
         $footer = Footer::all()[0];
         $article = Article::orderByDesc('id')->simplePaginate(3);
-        return view('publique.blog' , compact('commentaire',"navbar",'footer','article','categories','tags'));
+        
+        return view('publique.blog' , compact('tab','commentaire',"navbar",'footer','article','categories','tags'));
     }
     public function index3()
     {
@@ -78,38 +88,54 @@ class PublicController extends Controller
             array_push($tab, $str2);
         }
 
-
         $service = Service::orderByDesc('id')->paginate(9);
-
-
+       
+        $articlePublie = [];
 
         $article = Article::orderByDesc('id')->limit(3)->get();
 
-        
+        foreach ($article as $art) {
+            if ($art->check == 'oui') {
+                array_push($articlePublie,$art);
+            }
+        }
 
         $servicepage = Service::orderByDesc('id')->limit(6)->get();
         $limite = 0;
         $footer = Footer::all()[0];
         $navbar = Navbar::all()[0];
 
-        return view('publique.services',compact('article','navbar','footer','service','servicepage','limite','tab'));
+        return view('publique.services',compact('articlePublie','navbar','footer','service','servicepage','limite','tab'));
 
     }
     public function index4()
     {
+        $titre = Titre::all();
+        $tab = [];
+
+        foreach($titre as $title){
+            $str = Str::of($title->titre)->replace('(', '<span>');
+            $str2 = Str::of($str)->replace(')','</span>');
+            array_push($tab, $str2);
+        }
+
         $footer = Footer::all()[0];
         $navbar = Navbar::all()[0];
         $contact = Contact::all()[0];
-        return view('publique.contact', compact('footer','navbar',"contact"));
+
+        return view('publique.contact', compact('tab','footer','navbar',"contact"));
+        
     }
 
     public function show($id)
     {
+        
         $navbar = Navbar::all()[0];
 
         $article = Article::find($id);
         $footer = Footer::all()[0];
         $commentaire = Commentaire::all();
+
         return view('publique.blog-post', compact("commentaire","navbar",'footer','article'));
     }
 

@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Article_Commentaire extends Model
+class contactmail extends Model
 {
     use HasFactory;
 }

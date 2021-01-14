@@ -64,13 +64,7 @@
                             @endforeach
                         </select>
 
-                        <div class="d-flex my-5">
-
-                            <h1 class="card-text"><small class="text-muted">Check : </small></h1>
-                                <button class="ml-2 btn btn-warning">
-                                    Publier
-                                </button>
-                        </div>
+                        
 
                         <button class="btn btn-success" type="submit">Modifier l'article</button>
                     </form>
