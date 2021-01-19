@@ -35,17 +35,20 @@
                                     <ul class="todo-list ui-sortable">
                                         
                                         @foreach ($titre as $item)
-                                        <form action="/edit-titre/{{$item->id}}" method="post">
-                                            @csrf
+                                            @can('webmaster')
+                                                <form action="/edit-titre/{{$item->id}}" method="post">
+                                                    @csrf
 
+                                                        
+                                                        <li class="bg-dark pl-3 border-bottom px-2 row py-3">
+                                                            <input type="text" name="titre" style="width: 60%" value="{{$item->titre}}" id="">
+                                                            <button class="btn btn-success ml-5" type="submit">Modifier</button>
+                                                        </li>
+                                                    
+                                                        
+                                                </form>
                                                 
-                                                <li class="bg-dark pl-3 border-bottom px-2 row py-3">
-                                                    <input type="text" name="titre" style="width: 60%" value="{{$item->titre}}" id="">
-                                                    <button class="btn btn-success ml-5" type="submit">Modifier</button>
-                                                </li>
-                                              
-                                                
-                                            </form>
+                                            @endcan
 
                                             @endforeach
                                             
@@ -71,20 +74,23 @@
 
                                             </div>
                                             <div class="col-4">
-                                                <form action="/add-carou" method="post" enctype="multipart/form-data">
-                                                    @csrf
-                                                    <div class=" row mt-3">
-                                                        <div class="col">
-                                                            <input name="image" type="file" class="custom-file-input" id="customFile">
-                                                            <label class="custom-file-label" for="customFile" ></label>
+                                                @can('webmaster')
+                                                    <form action="/add-carou" method="post" enctype="multipart/form-data">
+                                                        @csrf
+                                                        <div class=" row mt-3">
+                                                            <div class="col">
+                                                                <input name="image" type="file" class="custom-file-input" id="customFile">
+                                                                <label class="custom-file-label" for="customFile" ></label>
 
-                                                        </div>
-                                                        <div class="col">
-                                                            <button type="submit" class="btn btn-warning">Ajouter</button>
+                                                            </div>
+                                                            <div class="col">
+                                                                <button type="submit" class="btn btn-warning">Ajouter</button>
 
+                                                            </div>
                                                         </div>
-                                                      </div>
-                                                </form>
+                                                    </form>
+                                                    
+                                                @endcan
 
                                             </div>
                                         </div>                        
@@ -100,10 +106,13 @@
                                                 <img style="width: 100px" src="{{asset("img/" . $item->image)}}" alt="">
             
                                                 <div class="tools pt-3">
-                                                    <form action="/logo-delete/{{$item->id}}" method="post">
-                                                        @csrf
-                                                        <button type="submit" class="btn btn-danger">Delete</button>
-                                                    </form>
+                                                    @can('webmaster')
+                                                        <form action="/logo-delete/{{$item->id}}" method="post">
+                                                            @csrf
+                                                            <button type="submit" class="btn btn-danger">Delete</button>
+                                                        </form>
+                                                        
+                                                    @endcan
                                                 </div>
                                             </li>
                                         @endforeach

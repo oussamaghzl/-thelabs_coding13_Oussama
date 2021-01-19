@@ -24,39 +24,41 @@
                     <ul class="todo-list ui-sortable">
 
                         
+                        @can('webmaster')
+                            <form action="/edit-contact" method="POST" >
+                                @csrf
+                                <div class="d-none">
+                                    <li class="bg-dark border-bottom px-2 py-3">
+                                        <input type="text" name="titre" style="width: 60vh" value="{{$contact->titre}}" id="">
+                                    </li>
+        
+                                    <li class="bg-dark border-bottom px-2 py-3">
+                                        <input type="text" name="rue" style="width: 60vh" value="{{$contact->rue}}" id="">
+                                    </li>
+        
+                                    <li class="bg-dark border-bottom px-2 py-3">
+                                        <input type="text" name="codepostal" style="width: 60vh" value="{{$contact->codepostal}}" id="">
+                                    </li>
+        
+                                    <li class="bg-dark border-bottom px-2 py-3">
+                                        <input type="text" name="telephone" style="width: 60vh" value="{{$contact->telephone}}" id="">
+                                    </li>
+        
+                                    <li class="bg-dark border-bottom px-2 py-3">
+                                        <input type="text" name="email" style="width: 60vh" value="{{$contact->email}}" id="">
+                                    </li>
+                                </div>
+                                <li class="bg-dark border-bottom px-2 py-3">
+                                    <input type="text" name="recherche" style="width: 60vh" class="px-4 py-3" value="{{$contact->recherche}}" id="">
+                                </li>
 
-                        <form action="/edit-contact" method="POST" >
-                            @csrf
-                            <div class="d-none">
-                                <li class="bg-dark border-bottom px-2 py-3">
-                                    <input type="text" name="titre" style="width: 60vh" value="{{$contact->titre}}" id="">
+                                <li class="bg-dark px-2 py-2 text-right">
+                                    <button class="btn btn-success" type="submit">Modifier</button>
                                 </li>
-    
-                                <li class="bg-dark border-bottom px-2 py-3">
-                                    <input type="text" name="rue" style="width: 60vh" value="{{$contact->rue}}" id="">
-                                </li>
-    
-                                <li class="bg-dark border-bottom px-2 py-3">
-                                    <input type="text" name="codepostal" style="width: 60vh" value="{{$contact->codepostal}}" id="">
-                                </li>
-    
-                                <li class="bg-dark border-bottom px-2 py-3">
-                                    <input type="text" name="telephone" style="width: 60vh" value="{{$contact->telephone}}" id="">
-                                </li>
-    
-                                <li class="bg-dark border-bottom px-2 py-3">
-                                    <input type="text" name="email" style="width: 60vh" value="{{$contact->email}}" id="">
-                                </li>
-                            </div>
-                            <li class="bg-dark border-bottom px-2 py-3">
-                                <input type="text" name="recherche" style="width: 60vh" class="px-4 py-3" value="{{$contact->recherche}}" id="">
-                            </li>
 
-                            <li class="bg-dark px-2 py-2 text-right">
-                                <button class="btn btn-success" type="submit">Modifier</button>
-                            </li>
-
-                        </form>
+                            </form>
+                            
+                        @endcan
                     </ul>
                 </div>
             </div>

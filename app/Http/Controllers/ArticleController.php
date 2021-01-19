@@ -57,6 +57,7 @@ class ArticleController extends Controller
         $newArticle->auteur_id = Auth::user()->id;
         $newArticle->image = $request->file('image')->hashName();
 
+
         $newArticle->save();
 
         $newArticle->tags()->syncWithoutDetaching($request->cats);
@@ -104,7 +105,9 @@ class ArticleController extends Controller
         $newArticle->check = $request->check;
         
         
+
         $mails = Newsletter::all();
+        
         foreach ($mails as $elem) {
             $elem->notify(new messagePublished($newArticle));
         }
@@ -123,6 +126,9 @@ class ArticleController extends Controller
         $newArticle->titre = $request->titre;
         $newArticle->auteur_id = $request->auteur_id;
         $newArticle->image = $request->file('image')->hashName();
+
+        $this->authorize('adminWebmaster',$newArticle);
+
 
         $newArticle->save();
         $newArticle->categories()->detach();
@@ -150,7 +156,9 @@ class ArticleController extends Controller
 
         $delete->tags()->detach();
         $delete->categories()->detach();
-        
+
+        $this->authorize('adminWebmaster',$delete);
+
         $delete->delete();
         return redirect()->back();
     }

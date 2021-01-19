@@ -25,49 +25,52 @@
                 <div class="col-2">
                     <h1 class="m-0 text-light text-center">Edit </h1>
 
-                    <form action="/edit-article/{{$article->id}}" method="post" enctype="multipart/form-data">
-                        @csrf
-                        <label for="">Modifier image article</label>
-                        <input type="file" name="image" id="">
-    
-                        <label for="">Modifier le titre</label>
-                        <textarea name="titre" id="" cols="50" rows="1">{{$article->titre}}</textarea>
-
-                        <label for="">Modifier le texte</label>
-                        <textarea name="texte" id="" cols="50" rows="5">{{$article->texte}}</textarea>
-
-                        <label for="">Nos Tags</label><br>
-
-                        <div class="d-none">
-                            <input type="text" name="auteur_id" value="{{$article->auteur_id}}">
-                        </div>
-
-                        <select name="cats[]" class="city form-control" data-placeholder="Pilih Kota" style="width: 100%;" multiple="multiple">
-                            @foreach($tags as $item)
-                                @if(in_array($item->id, $tableauTags))
-                                <option value="{{ $item->id }}" selected="true">{{ $item->name }}</option>
-                                @else
-                                <option value="{{ $item->id }}">{{ $item->name }}</option>
-                                @endif 
-                            @endforeach
-                        </select>
+                    @can('adminWebmaster', $article)
                         
-                        <label for="">Nos Categories</label><br>
+                        <form action="/edit-article/{{$article->id}}" method="post" enctype="multipart/form-data">
+                            @csrf
+                            <label for="">Modifier image article</label>
+                            <input type="file" name="image" id="">
+        
+                            <label for="">Modifier le titre</label>
+                            <textarea name="titre" id="" cols="50" rows="1">{{$article->titre}}</textarea>
 
-                        <select name="tabcateg[]" class="city form-control" data-placeholder="Pilih Kota" style="width: 100%;" multiple="multiple">
-                            @foreach($categories as $item)
-                                @if(in_array($item->id, $tableauCat))
-                                <option value="{{ $item->id }}" selected="true">{{ $item->name }}</option>
-                                @else
-                                <option value="{{ $item->id }}">{{ $item->name }}</option>
-                                @endif 
-                            @endforeach
-                        </select>
+                            <label for="">Modifier le texte</label>
+                            <textarea name="texte" id="" cols="50" rows="5">{{$article->texte}}</textarea>
 
-                        
+                            <label for="">Nos Tags</label><br>
 
-                        <button class="btn btn-success" type="submit">Modifier l'article</button>
-                    </form>
+                            <div class="d-none">
+                                <input type="text" name="auteur_id" value="{{$article->auteur_id}}">
+                            </div>
+
+                            <select name="cats[]" class="city form-control" data-placeholder="Pilih Kota" style="width: 100%;" multiple="multiple">
+                                @foreach($tags as $item)
+                                    @if(in_array($item->id, $tableauTags))
+                                    <option value="{{ $item->id }}" selected="true">{{ $item->name }}</option>
+                                    @else
+                                    <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                    @endif 
+                                @endforeach
+                            </select>
+                            
+                            <label for="">Nos Categories</label><br>
+
+                            <select name="tabcateg[]" class="city form-control" data-placeholder="Pilih Kota" style="width: 100%;" multiple="multiple">
+                                @foreach($categories as $item)
+                                    @if(in_array($item->id, $tableauCat))
+                                    <option value="{{ $item->id }}" selected="true">{{ $item->name }}</option>
+                                    @else
+                                    <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                    @endif 
+                                @endforeach
+                            </select>
+
+                            
+
+                            <button class="btn btn-success" type="submit">Modifier l'article</button>
+                        </form>
+                    @endcan
 
                     
                 </div>

@@ -38,26 +38,23 @@ class TeamController extends Controller
     {
         
         $validateForm = $request->validate([
-            "name" => "required",
-            "photo" => "required",
             "fonction" => "required",
 
         ]);
 
         $addTeam = new Team();
 
-        $addTeam->name = $request->name;
-        $addTeam->photo = $request->file('photo')->hashName();
+        $this->authorize('webmaster');
+
+        $addTeam->user_id=$request->user_id;
         $addTeam->fonction = $request->fonction;
 
         $addTeam ->save();
                 
-        $request->file('photo')->storePublicly('img','public');
 
         return redirect()->back();
 
     }
-
     /**
      * Display the specified resource.
      *

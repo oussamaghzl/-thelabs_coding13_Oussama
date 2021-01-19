@@ -77,6 +77,8 @@ class ReadyController extends Controller
         $modifReady->soustitre = $request->soustitre;
         $modifReady->bouton = $request->bouton;
 
+        $this->authorize('webmaster');
+
         $modifReady->save();
 
         return redirect()->back();

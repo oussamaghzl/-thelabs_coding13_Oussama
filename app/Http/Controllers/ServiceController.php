@@ -45,6 +45,8 @@ class ServiceController extends Controller
         $addService->titre = $request->titre;
         $addService->text = $request->text;
 
+        $this->authorize('webmaster');
+
         $addService->save();
 
         return redirect()->back();
@@ -90,6 +92,8 @@ class ServiceController extends Controller
         $modifService->titre = $request->titre;
         $modifService->text = $request->text;
 
+        $this->authorize('webmaster');
+
         $modifService->save();
 
         return redirect()->back();
@@ -105,6 +109,8 @@ class ServiceController extends Controller
     public function destroy($id)
     {
         $deleteService = Service::find($id);
+
+        $this->authorize('webmaster');
 
         $deleteService->delete();
 

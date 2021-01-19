@@ -22,32 +22,29 @@
                     <!-- /.box-header -->
                     <div class="box-body">
                     <ul class="todo-list ui-sortable">
+                        @can('webmaster')
+                            <form action="/edit-footer" method="POST" >
+                                @csrf
 
-                        <form action="/edit-footer" method="POST" >
-                            @csrf
+                                <li class="bg-dark border-bottom px-2 py-3">
+                                    <input type="text" name="copyright" style="width: 60vh" value="{{$footer->copyright}}" id="">
+                                </li>
 
-                            <li class="bg-dark border-bottom px-2 py-3">
-                                <input type="text" name="copyright" style="width: 60vh" value="{{$footer->copyright}}" id="">
-                            </li>
+                                <li class="bg-dark border-bottom px-2 py-3">
+                                    <input type="text" name="name" style="width: 60vh" value="{{$footer->name}}" id="">
+                                </li>
 
-                            <li class="bg-dark border-bottom px-2 py-3">
-                                <input type="text" name="name" style="width: 60vh" value="{{$footer->name}}" id="">
-                            </li>
+                                <li class="bg-dark border-bottom px-2 py-3">
+                                    <input type="text" name="lien" style="width: 60vh" value="{{$footer->lien}}" id="">
+                                </li>
 
-                            <li class="bg-dark border-bottom px-2 py-3">
-                                <input type="text" name="lien" style="width: 60vh" value="{{$footer->lien}}" id="">
-                            </li>
+                                <li class="bg-dark px-2 py-2 text-right">
+                                    <button class="btn btn-success" type="submit">Modifier</button>
+                                </li>
 
+                                </form>
                             
-
-
-                            
-
-                            <li class="bg-dark px-2 py-2 text-right">
-                                <button class="btn btn-success" type="submit">Modifier</button>
-                            </li>
-
-                            </form>
+                        @endcan
                     </ul>
                         
                     

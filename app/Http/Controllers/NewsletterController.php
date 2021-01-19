@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Newsletter;
+use App\Models\User;
 use App\Notifications\NewsletterMessage;
 use Illuminate\Http\Request;
 
@@ -16,7 +17,10 @@ class NewsletterController extends Controller
      */
     public function index()
     {
-        //
+        
+        $newsletter = Newsletter::all();
+        $membre = User::all();
+        return view('backend.newsletter',compact('newsletter','membre'));
     }
 
     /**
@@ -101,8 +105,13 @@ class NewsletterController extends Controller
      * @param  \App\Models\Newsletter  $newsletter
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Newsletter $newsletter)
+    public function destroy($id)
     {
-        //
+        $news = Newsletter::find($id);
+
+        $news->delete();
+
+        return redirect()->back();
+
     }
 }

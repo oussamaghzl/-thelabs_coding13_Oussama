@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Events\UserHasRegisteredEvent;
 use App\Http\Controllers\Controller;
+use App\Models\Newsletter;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -52,7 +54,7 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'pdp' => ['required'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'email' => ['required', 'string', 'email', 'max:255'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
@@ -65,13 +67,36 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $mail = Newsletter::all();
+        $index = 0;
+
+        foreach($mail as $element){
+            if($element->email == $data['email']){
+               $index = $element->id; 
+                break;
+            }else{
+                $index = -1;
+            }
+        }
+
+        if($index === -1){
+                $newEntry = new Newsletter;
+                $newEntry->email = $data['email'];
+                $newEntry->save();
+        }
+
+        $user = User::create([
             'name' => $data['name'],
             'pdp' => $data['pdp']->hashName(),
             $data["pdp"]->storePublicly('img','public'),
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+        
+        
+        event(new UserHasRegisteredEvent($user));
+
+        return $user ;
         
     }
 }

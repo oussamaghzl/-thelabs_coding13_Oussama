@@ -28,14 +28,14 @@ class UserSeeder extends Seeder
                 'email' => 'webmaster@gmail.com',
                 "pdp" => "avatar/goku.png",
                 'password' => Hash::make('uncharted'),
-                'role_id' => '2',
+                'role_id' => '3',
             ],
             [
                 'name' => 'Abdelmajid',
                 'email' => 'redacteur@gmail.com',
                 "pdp" => "avatar/02.jpg",
                 'password' => Hash::make('uncharted'),
-                'role_id' => '3',
+                'role_id' => '2',
             ],
             [
                 'name' => 'Nanami',

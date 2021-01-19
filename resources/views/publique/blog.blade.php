@@ -16,7 +16,7 @@
 			
 			@if (Route::has('login'))
 					@auth
-						<li><a href="{{ url('/home') }}">Oussama</a></li>
+					<li><a href="{{ url('/home') }}">{{Auth::user()->name}}</a></li>
 					@else
 						<li><a href="{{ route('login') }}">Login</a></li>
 						@if (Route::has('register'))
@@ -47,10 +47,8 @@
 		<!-- page section -->
 		<div class="page-section spad">
 			<div class="container">
-				<div class="row">
-
+				<div class="row ">
 					<div class="col-md-8 col-sm-7 blog-posts">
-
 						@foreach ($article as $item)
 							@if ($item->check == 'oui')
 								<div class="post-item">

@@ -23,39 +23,42 @@
                     <div class="box-body">
                     <ul class="todo-list ui-sortable">
 
-                        
+                        @can('webmaster')
 
-                        <form action="/edit-contact" method="POST" >
-                            @csrf
 
-                            <li class="bg-dark border-bottom px-2 py-3">
-                                <input type="text" name="titre" style="width: 60vh" value="{{$contact->titre}}" id="">
-                            </li>
+                            <form action="/edit-contact" method="POST" >
+                                @csrf
 
-                            <li class="bg-dark border-bottom px-2 py-3">
-                                <input type="text" name="rue" style="width: 60vh" value="{{$contact->rue}}" id="">
-                            </li>
+                                <li class="bg-dark border-bottom px-2 py-3">
+                                    <input type="text" name="titre" style="width: 60vh" value="{{$contact->titre}}" id="">
+                                </li>
 
-                            <li class="bg-dark border-bottom px-2 py-3">
-                                <input type="text" name="codepostal" style="width: 60vh" value="{{$contact->codepostal}}" id="">
-                            </li>
+                                <li class="bg-dark border-bottom px-2 py-3">
+                                    <input type="text" name="rue" style="width: 60vh" value="{{$contact->rue}}" id="">
+                                </li>
 
-                            <li class="bg-dark border-bottom px-2 py-3">
-                                <input type="text" name="telephone" style="width: 60vh" value="{{$contact->telephone}}" id="">
-                            </li>
+                                <li class="bg-dark border-bottom px-2 py-3">
+                                    <input type="text" name="codepostal" style="width: 60vh" value="{{$contact->codepostal}}" id="">
+                                </li>
 
-                            <li class="bg-dark border-bottom px-2 py-3">
-                                <input type="text" name="email" style="width: 60vh" value="{{$contact->email}}" id="">
-                            </li>
+                                <li class="bg-dark border-bottom px-2 py-3">
+                                    <input type="text" name="telephone" style="width: 60vh" value="{{$contact->telephone}}" id="">
+                                </li>
 
-                            
-                            
+                                <li class="bg-dark border-bottom px-2 py-3">
+                                    <input type="text" name="email" style="width: 60vh" value="{{$contact->email}}" id="">
+                                </li>
 
-                            <li class="bg-dark px-2 py-2 text-right">
-                                <button class="btn btn-success" type="submit">Modifier</button>
-                            </li>
+                                
+                                
 
-                            </form>
+                                <li class="bg-dark px-2 py-2 text-right">
+                                    <button class="btn btn-success" type="submit">Modifier</button>
+                                </li>
+
+                                </form>
+
+                        @endcan
                     </ul>
                         
                     

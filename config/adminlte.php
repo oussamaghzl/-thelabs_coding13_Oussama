@@ -241,14 +241,27 @@ return [
             'icon' => 'fas fa-fw fa-user',
         ],
         [
-            'text' => 'change_password',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-lock',
+            'text' => 'Liste des users',
+            'url'  => '/liste-user',
+            'icon' => 'fas fa-users',
         ],
+        
         [
             'text' => 'MailBox',
-            'icon' => 'fas fa-fw fa-lock',
+            'icon' => 'fas fa-envelope',
             'submenu' => [
+                [
+                    'text' => 'messagerie',
+                    'icon_color' => 'blue',
+                    'url'  => '/mailBox',
+                ],
+                [
+                    'text' => 'newsletter',
+                    'icon_color' => 'blue',
+                    'url'  => '/newsletter',
+                ],
+
+               
                 
             ],
         ],

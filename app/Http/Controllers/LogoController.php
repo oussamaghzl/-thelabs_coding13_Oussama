@@ -90,6 +90,8 @@ class LogoController extends Controller
         $modifLogo = Logo::all()[0];
 
         $modifLogo->lien = $request->file('lien')->hashName();
+        
+        $this->authorize('webmaster');
 
         $modifLogo ->save();
         

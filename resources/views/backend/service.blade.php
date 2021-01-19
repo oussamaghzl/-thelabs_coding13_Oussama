@@ -13,7 +13,8 @@
                     <h3 class="m-0 text-light  text-center">Creation de service</h3>
                     <br>
                     <div class="card rounded border">
-
+                        @can('webmaster')
+                            
                         <form action="/add-service" method="post" >
                             @csrf
                           <div class="modal-body">
@@ -47,7 +48,8 @@
                                 
                             </form>
 
-                    </div>
+                            @endcan
+                        </div>
                 </div>
 
                 <div class="col-9">
@@ -84,10 +86,13 @@
                                             </a>
 
                                           </p>
-                                          <form action="/delete-service/{{$item->id}}" method="post">
-                                            @csrf
-                                            <button type="submit" class="btn btn-danger">Delete</button>
-                                        </form>
+                                          @can('webmaster')
+                                            <form action="/delete-service/{{$item->id}}" method="post">
+                                                @csrf
+                                                <button type="submit" class="btn btn-danger">Delete</button>
+                                            </form>
+                                              
+                                          @endcan
                                         </th>
                                         
                                     </tr>

@@ -16,7 +16,8 @@
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body py-3 container-fluid w-75 mx-auto text-dark">
-
+                        @can('webmaster')
+                            
                         <form action="/add-categorie"  method="POST" >
                             @csrf
 
@@ -38,6 +39,7 @@
                             <button class="btn btn-warning" type="submit">Creer la catégorie</button>
 
                             </form>
+                        @endcan
                         </ul>
                     </div>
             </div>

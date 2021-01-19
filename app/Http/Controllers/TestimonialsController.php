@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Team;
 use App\Models\Testimonials;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class TestimonialsController extends Controller
@@ -17,7 +18,8 @@ class TestimonialsController extends Controller
     {
         $testi = Testimonials::all();
         $team = Team::all();
-        return view('backend.testimonials' , compact('testi','team'));
+        $user = User::all();
+        return view('backend.testimonials' , compact('user','testi','team'));
     }
 
     /**
@@ -37,18 +39,20 @@ class TestimonialsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+    {   
+
         $validateForm = $request->validate([
             "texte" => "required",
             "team_id" => "required",
-
         ]);
-
+        
         $addTesti = new Testimonials();
 
         $addTesti->texte = $request->texte;
         $addTesti->team_id = $request->team_id;
 
+        $this->authorize('webmaster');
+        
         $addTesti ->save();
         
         return redirect()->back();
@@ -95,6 +99,7 @@ class TestimonialsController extends Controller
 
         $modifTesti->texte = $request->texte;
         $modifTesti->team_id = $request->team_id;
+        $this->authorize('webmaster');
 
         $modifTesti ->save();
         
@@ -110,6 +115,8 @@ class TestimonialsController extends Controller
     public function destroy($id)
     {
         $delTesti = Testimonials::find($id);
+        
+        $this->authorize('webmaster');
 
         $delTesti->delete();
 

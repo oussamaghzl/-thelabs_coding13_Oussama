@@ -16,7 +16,7 @@
 			
 			@if (Route::has('login'))
 					@auth
-						<li><a href="{{ url('/home') }}">Oussama</a></li>
+					<li><a href="{{ url('/home') }}">{{Auth::user()->name}}</a></li>
 					@else
 						<li><a href="{{ route('login') }}">Login</a></li>
 						@if (Route::has('register'))

@@ -2,13 +2,13 @@
 
 namespace App\Notifications;
 
-use App\Models\contactmail;
+use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class ContactMessage extends Notification
+class InscriptionMsg extends Notification
 {
     use Queueable;
 
@@ -18,11 +18,9 @@ class ContactMessage extends Notification
      * @return void
      */
 
-    protected $contact;
-
-    public function __construct(contactmail $contact)
+    public function __construct()
     {
-        $this->contact = $contact;
+        //
     }
 
     /**
@@ -33,7 +31,7 @@ class ContactMessage extends Notification
      */
     public function via($notifiable)
     {
-        return ['mail'];
+        return ['mail','database'];
     }
 
     /**
@@ -45,9 +43,11 @@ class ContactMessage extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->line('Vous avez recu un message')
-                    ->action('Voir message', url('/mailBox'))
-                    ->line('Thank you for using our application!');
+                    ->line('Merci de vous etes inscrit chez nous !')
+                    ->action('Aller sur le site', url('/'))
+                    ->line('Thank you !')
+                    ->line('LABS');
+
     }
 
     /**

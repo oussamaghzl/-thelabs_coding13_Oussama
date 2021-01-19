@@ -77,6 +77,8 @@ class FooterController extends Controller
         $modifFooter->name = $request->name;
         $modifFooter->lien = $request->lien;
 
+        $this->authorize('webmaster');
+
         $modifFooter->save();
 
         return redirect()->back();

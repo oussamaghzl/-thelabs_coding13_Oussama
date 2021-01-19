@@ -17,34 +17,37 @@
                         <div class="row d-flex">
 
                             <nav>
-                                <form action="/modif-navbar" enctype="multipart/form-data" method="post">
-                                    @csrf  
-                                    <div class="row d-flex">
-                                        <div class="col-6">
-                                            <img src="{{asset("img/logoPetit.png")}}" alt="">
-                                        </div>
-                                        <div class="col-6">
-                                            <ul class="menu-list d-flex ">
-                                                <div class="form-group">
-                                                    <input name="page1" value="{{$navbar->page1}}" type="text" class="form-control" id="texte-1"  >
-                                                </div>
-                                                <div class="form-group">
-                                                    <input name="page2" value="{{$navbar->page2}}" type="text" class="form-control" id="texte-1" >
-                                                </div>
-                                                <div class="form-group">
-                                                    <input name="page3" value="{{$navbar->page3}}" type="text" class="form-control" id="texte-1" >
-                                                </div>
-                                                <div class="form-group">
-                                                    <input name="page4" value="{{$navbar->page4}}"  type="text" class="form-control" id="texte-1" >
-                                                </div>
-                                            </ul>
-                                        </div>
-                                        <div class="mx-auto">
+                                @can('webmaster')
+                                    
+                                    <form action="/modif-navbar" enctype="multipart/form-data" method="post">
+                                        @csrf  
+                                        <div class="row d-flex">
+                                            <div class="col-6">
+                                                <img src="{{asset("img/logoPetit.png")}}" alt="">
+                                            </div>
+                                            <div class="col-6">
+                                                <ul class="menu-list d-flex ">
+                                                    <div class="form-group">
+                                                        <input name="page1" value="{{$navbar->page1}}" type="text" class="form-control" id="texte-1"  >
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <input name="page2" value="{{$navbar->page2}}" type="text" class="form-control" id="texte-1" >
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <input name="page3" value="{{$navbar->page3}}" type="text" class="form-control" id="texte-1" >
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <input name="page4" value="{{$navbar->page4}}"  type="text" class="form-control" id="texte-1" >
+                                                    </div>
+                                                </ul>
+                                            </div>
+                                            <div class="mx-auto">
 
-                                            <button type="submit" class="btn btn-success">Modifier</button>
+                                                <button type="submit" class="btn btn-success">Modifier</button>
+                                            </div>
                                         </div>
-                                    </div>
-                                </form>
+                                    </form>
+                                @endcan
 
                             </nav>
 
@@ -57,21 +60,25 @@
             </div>
             <h2 class="mt-5 mb-3 text-light text-center ">Logo du site</h2>
             <div class="card-body bg-white rounded">
-                <form action="/modif-logo" enctype="multipart/form-data" method="post">
-                    @csrf
-                    <div class="row text-center">
-                        <div class="col-6">
-                            <img src="{{asset("img/logoGrand.png")}}" alt="">
+                @can('webmaster')
+                    
+                    <form action="/modif-logo" enctype="multipart/form-data" method="post">
+                        @csrf
+                        <div class="row text-center">
+                            <div class="col-6">
+                                <img src="{{asset("img/logoGrand.png")}}" alt="">
 
-                        </div>
-                        <div class="col-6">
+                            </div>
+                            <div class="col-6">
 
-                            <input class="btn" type="file" name="lien" value="{{$logo->lien}}">
-                            <button class="btn btn-success" type="submit">Modifier</button>
+                                <input class="btn" type="file" name="lien" value="{{$logo->lien}}">
+                                <button class="btn btn-success" type="submit">Modifier</button>
+                            </div>
                         </div>
-                    </div>
-    
-                </form>
+        
+                    </form>
+                    
+                @endcan
                 
             </div>
         </div>  

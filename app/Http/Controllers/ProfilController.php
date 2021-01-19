@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Profil;
+use App\Models\Role;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -20,6 +22,12 @@ class ProfilController extends Controller
         return view('backend.profil',compact('profil'));
     }
 
+    public function index2()
+    {
+        $user = User::simplePaginate(10);
+        $role = Role::all();
+        return view('backend.admin.allUser',compact('user','role'));
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -70,9 +78,17 @@ class ProfilController extends Controller
      * @param  \App\Models\Profil  $profil
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Profil $profil)
+    public function update(Request $request, $id)
     {
-        //
+        $modifUser = User::find($id);
+
+        $modifUser->role_id = $request->role_id;
+
+        $this->authorize('admin');
+
+        $modifUser->save();
+
+        return redirect()->back();
     }
 
     /**

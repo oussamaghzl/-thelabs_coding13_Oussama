@@ -7,6 +7,7 @@ use App\Mail\MailSender;
 use App\Models\Contact;
 use App\Models\contactmail;
 use App\Models\Email;
+use App\Models\Newsletter;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
@@ -19,7 +20,11 @@ class EmailController extends Controller
      */
     public function index()
     {
-        //
+
+        $newMessage = contactmail::all();
+
+        return view('backend.mailBox',compact('newMessage'));
+
     }
 
     /**
@@ -34,13 +39,21 @@ class EmailController extends Controller
 
     public function sendmail(Request $request)
     {
+        $newMessage = new contactmail();
+
+        $newMessage->name = $request->name;
+        $newMessage->email = $request->email;
+        $newMessage->subject = $request->subject;
+        $newMessage->message = $request->message;
+
+        $newMessage->save();
 
         $contact = [
             "name" => "Message de " . $request->name,
             'subject' => $request->subject,
             'message' => $request->message, 
         ];
-
+        
         Mail::to('bencleyhd@gmail.com')->send(new ContactSender($contact));
 
         return redirect()->back();

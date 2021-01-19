@@ -88,6 +88,7 @@ class ContactController extends Controller
         $modifContact->email = $request->email;
         $modifContact->recherche = $request->recherche;
 
+        
         $modifContact->save();
 
         return redirect()->back();

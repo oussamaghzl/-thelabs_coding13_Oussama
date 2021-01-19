@@ -48,7 +48,7 @@ class messagePublished extends Notification
     {
         return (new MailMessage)
                     ->line('Un nouvel article a été publié')
-                    ->action('Diriger au site', url('/blog'))
+                    ->action('Diriger au site', url('/Blog'))
                     ->line('Thank you !');
     }
 

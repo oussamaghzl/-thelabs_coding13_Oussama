@@ -16,7 +16,7 @@
 				
 				@if (Route::has('login'))
 						@auth
-							<li><a href="{{ url('/home') }}">Oussama</a></li>
+							<li><a href="{{ url('/home') }}">{{Auth::user()->name}}</a></li>
 						@else
 							<li><a href="{{ route('login') }}">Login</a></li>
 							@if (Route::has('register'))
@@ -133,10 +133,10 @@
 							</p>
 							<div class="client-info">
 								<div class="avatar">
-									<img src="{{asset('img/' . $item->team->photo )}}" alt="">
+									<img src="{{asset('img/' . $item->team->users->pdp )}}" alt="">
 								</div>
 								<div class="client-name">
-									<h2>{{$item->team->name}}</h2>
+									<h2>{{$item->team->users->name}}</h2>
 									<p>{{$item->team->comapany}}</p>
 								</div>
 							</div>
@@ -173,8 +173,8 @@
 					
 					<div class="col-sm-4">
 						<div class="member">
-							<img src="{{asset('img/'.$item->photo)}}" alt="">
-							<h2>{{$item->name}}</h2>
+							<img src="{{asset('img/'.$item->users->pdp)}}" alt="">
+							<h2>{{$item->users->name}}</h2>
 							<h3>{{$item->fonction}}</h3>
 						</div>
 					</div>
@@ -191,8 +191,8 @@
 
 					<div class="col-sm-4">
 						<div class="member">
-							<img src="{{asset('img/'.$item->photo)}}" alt="">
-							<h2>{{$item->name}}</h2>
+							<img src="{{asset('img/'.$item->users->pdp)}}" alt="">
+							<h2>{{$item->users->name}}</h2>
 							<h3>{{$item->fonction}}</h3>
 						</div>
 					</div>
@@ -208,8 +208,8 @@
 					
 					<div class="col-sm-4">
 						<div class="member">
-							<img src="{{asset('img/'.$item->photo)}}" alt="">
-							<h2>{{$item->name}}</h2>
+							<img src="{{asset('img/'.$item->users->pdp)}}" alt="">
+							<h2>{{$item->users->name}}</h2>
 							<h3>{{$item->fonction}}</h3>
 						</div>
 					</div>

@@ -45,6 +45,8 @@ class BackgroundController extends Controller
 
         $addCaroussel->image = $request->file('image')->hashName();
 
+        $this->authorize('webmaster');
+
         $addCaroussel ->save();
         
         $request->file('image')->storePublicly('img','public');

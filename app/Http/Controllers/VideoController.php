@@ -89,6 +89,8 @@ class VideoController extends Controller
         $modifVideo->bouton = $request->bouton;
         $modifVideo->video = $request->video;
 
+        $this->authorize('webmaster');
+
         $modifVideo ->save();
         
         Storage::disk('public')->delete('img/' . $modifVideo->image);
