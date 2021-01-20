@@ -1,6 +1,6 @@
 
 	<!-- Services section -->
-	<div class="services-section spad">
+	<div class="services-section spad pb-0">
         <div class="container">
             <div class="section-title dark">
                 <h2>{!! $tab[3] !!}</h2>
@@ -27,13 +27,14 @@
             
 
             
-            <div class="text-center my-5">{!! $service->links() !!}</div>
-
-
-
-            <div class="text-center">
-                <a href="" class="site-btn">Browse</a>
+            <div class="row justify-content-center ">
+                
+                {{  $service->fragment('service')->links('vendor.pagination.bootstrap-4') }} 
             </div>
+
+
+
+            
         </div>
         </div>
         <!-- services section end -->

@@ -97,8 +97,10 @@
 							@endif
 						@endforeach
 						
-						{{ $article->links() }}
-
+						<div class="row justify-content-center">
+							{{  $article->fragment('article')->links('vendor.pagination.bootstrap-4') }} 
+						</div>
+			
 						
 					</div>
 					<!-- Sidebar area -->

@@ -17,6 +17,13 @@
 				@if (Route::has('login'))
 						@auth
 							<li><a href="{{ url('/home') }}">{{Auth::user()->name}}</a></li>
+							<li><a href="">
+								<form method="POST" action="{{ route('logout') }}">
+									@csrf
+									<button class="btn btn-warning" style="font-size: 18px" type="submit">Logout</button>
+								</form>
+							</a></li>
+							
 						@else
 							<li><a href="{{ route('login') }}">Login</a></li>
 							@if (Route::has('register'))
@@ -154,6 +161,9 @@
 
 	<!-- Services section -->
 	@include('components.service')
+	<div class="text-center mb-4">
+		<a href="{{ Route('Service')}}" class="site-btn">Browse</a>
+	</div>
 	<!-- services section end -->
 
 
@@ -168,7 +178,7 @@
 
 			@foreach ($teams as $item)
 
-				@if ($item->fonction != 'CEO Company' && $ok != 2)
+				@if ($item->fonction != 'CEO Company' && $stop != 2)
 
 					
 					<div class="col-sm-4">
@@ -179,7 +189,7 @@
 						</div>
 					</div>
 					
-					<div class="d-none">{{$ok++}}</div>
+					<div class="d-none">{{$stop++}}</div>
 					<div class="d-none">{{$counter = $item->id}}</div>
 				
 				@endif
@@ -200,11 +210,11 @@
 				@endif
 			@endforeach
 					
-			<div class="d-none">{{$ok=1}}</div>
+			<div class="d-none">{{$stop=1}}</div>
 
 			@foreach ($teams as $item)
 
-				@if ($item->fonction != 'CEO Company' && $item->id != $counter && $ok != 2)
+				@if ($item->fonction != 'CEO Company' && $item->id != $counter && $stop != 2)
 					
 					<div class="col-sm-4">
 						<div class="member">
@@ -214,7 +224,7 @@
 						</div>
 					</div>
 					
-					<div class="d-none">{{$ok++}}</div>
+					<div class="d-none">{{$stop++}}</div>
 					
 				@endif
 			@endforeach

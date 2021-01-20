@@ -52,7 +52,9 @@
 			<!-- Services section -->
 			@include('components.service')
 			<!-- services section end -->
-
+			<div class="text-center mb-4">
+				<a href="#test" class=" site-btn">Browse</a>
+			</div>
 			
 		</div>
 	</div>
@@ -60,7 +62,7 @@
 
 
 	<!-- features section -->
-	<div class="team-section spad">
+	<div class="team-section spad" id="test">
 		<div class="overlay"></div>
 		<div class="container">
 			<div class="section-title">

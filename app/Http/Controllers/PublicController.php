@@ -34,14 +34,14 @@ class PublicController extends Controller
         $team = Team::inRandomOrder()->limit(3)->get();
         $testi = Testimonials::all();
         $video = Video::all()[0];
-        $service = Service::orderByDesc('id')->simplePaginate(9);
+        $service = Service::orderByDesc('id')->paginate(9);
 
         $footer = Footer::all()[0];
         
         $teams = Team::inRandomOrder()->get();
         
         $counter = 0;
-        $ok = 1;
+        $stop = 1;
 
         $titre = Titre::all();
         $tab = [];
@@ -53,7 +53,7 @@ class PublicController extends Controller
         }
         
 
-        return view('publique.Accueil',compact('footer','ok','teams','counter','service','video','navbar',"contact","caroussel",'tab','icone','ready','service3card','team','testi','video'));
+        return view('publique.Accueil',compact('footer','stop','teams','counter','service','video','navbar',"contact","caroussel",'tab','icone','ready','service3card','team','testi','video'));
     }
     public function index2()
     {
@@ -73,7 +73,7 @@ class PublicController extends Controller
         $tags = Tag::all();
 
         $footer = Footer::all()[0];
-        $article = Article::orderByDesc('id')->simplePaginate(3);
+        $article = Article::orderByDesc('id')->paginate(3);
         
         return view('publique.blog' , compact('tab','commentaire',"navbar",'footer','article','categories','tags'));
     }
